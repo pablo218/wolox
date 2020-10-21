@@ -1,0 +1,64 @@
+$blue-color: rgb(42, 167, 223); //#2aa7df
+$green-color: rgb(163, 204, 57); //#a3cc39
+
+/****FONTS****/
+//Montserrat-Regular
+@font-face {
+  font-family: "M-regular";
+  src: url("/assets/Fonts/Montserrat/Montserrat-Regular.ttf");
+}
+
+//Montserrat-SemiBold
+
+@font-face {
+  font-family: "M-semibold";
+  src: url("/assets/Fonts/Montserrat/Montserrat-SemiBold.ttf");
+}
+
+//Montserrat-Bold
+@font-face {
+  font-family: "M-bold";
+  src: url("/assets/Fonts/Montserrat/Montserrat-Bold.ttf");
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  list-style: none;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; // 10px/16px = 62.5% -> 1rem = 10px
+
+  @media only screen and (max-width: 1300px) {
+    font-size: 50%;
+  }
+  @media only screen and (max-width: 1050px) {
+    font-size: 40%;
+  }
+  @media only screen and (max-width: 850px) {
+    font-size: 35%;
+  }
+  @media only screen and (max-width: 768px) {
+    font-size: 60%;
+  }
+  @media only screen and (max-width: 600px) {
+    font-size: 50%;
+  }
+  @media only screen and (max-width: 500px) {
+    font-size: 40%;
+  }
+  @media only screen and (max-width: 400px) {
+    font-size: 30%;
+  }
+}
+
+body {
+  //font-family: "MiFuente";
+  font-weight: 300;
+  line-height: 1.6;
+}

@@ -1,0 +1,116 @@
+//Montserrat-Regular
+@font-face {
+  font-family: "MiFuente-header-nav";
+  src: url("/assets/Fonts/Montserrat/Montserrat-Regular.ttf");
+}
+
+//Montserrat-SemiBold
+
+@font-face {
+  font-family: "MiFuente-header-nav-2";
+  src: url("/assets/Fonts/Montserrat/Montserrat-SemiBold.ttf");
+}
+//Montserrat-Bold
+@font-face {
+  font-family: "MiFuente-header-nav-3";
+  src: url("/assets/Fonts/Montserrat/Montserrat-Bold.ttf");
+}
+
+.Header {
+  background-image: url("/assets/Backgrounds/Bg_Header@3x.png");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+
+  @media only screen and (max-width: 768px) {
+    background-image: url("/assets/Backgrounds/Bg_Header.png");
+    background-size: contain;
+    display: grid;
+    grid-template-columns: 100%;
+    height: fit-content;
+    justify-content: center;
+    align-content: center;
+  }
+
+  &__left {
+    font-family: "MiFuente-header-nav";
+    width: 55%;
+    display: grid;
+    grid-template-columns: repeat(10, 10%);
+    grid-template-rows: repeat(22, 4.45%);
+
+    @media only screen and (max-width: 768px) {
+      margin: 20px auto;
+      width: 100%;
+    }
+
+    &__text--container {
+      display: flex;
+      flex-direction: column;
+      grid-column: 2/-1;
+      grid-row: 8/-1;
+      @media only screen and (max-width: 500px) {
+        padding: 30px 20px;
+        grid-column: 1/-1;
+      }
+    }
+
+    &__text {
+      font-size: 5rem;
+
+      &--3 {
+        font-family: "MiFuente-header-nav-3";
+        color: $green-color;
+      }
+    }
+
+    &--logo {
+      width: 20rem;
+      grid-column: 2/6;
+      grid-row: 3/4;
+      @media only screen and (max-width: 500px) {
+        padding: 30px 20px;
+        grid-column: 1/-1;
+      }
+    }
+  }
+
+  &__right {
+    display: flex;
+    flex-wrap: wrap;
+    width: 45%;
+
+    @media only screen and (max-width: 768px) {
+      width: 100%;
+    }
+
+    &--image-container {
+      align-self: center;
+      width: 100%;
+      height: fit-content;
+
+      @media only screen and (max-width: 768px) {
+        height: fit-content;
+        //position: relative;
+      }
+    }
+
+    &--image {
+      width: 70%;
+      transform: rotateY(180deg);
+
+      @media only screen and (max-width: 768px) {
+        margin-top: 10px;
+        width: 50%;
+        margin-left: 25%;
+        //position: absolute;
+        //left: 50%;
+        transform: rotateY(180deg); //translateX(50%);
+      }
+
+      @media only screen and (max-width: 600px) {
+        width: 40%;
+      }
+    }
+  }
+}

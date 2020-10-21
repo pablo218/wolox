@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
 
-function App() {
+import LandingPage from './pages/LandingPage'
+import EnglishEspañolButton from './shared/UI/EnglishEspañolButton'
+import MenuButton from './shared/UI/Mobile/MenuButton'
+import { Language } from './shared/Contexts/LanguageContext'
+
+import "./styles/main.scss";
+
+export default function App() {
+
+  const [english, setLanguage] = useState(false);
+
+  const setLang = () => {
+    setLanguage((eng) => !eng);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Language.Provider value={{ english: english, setLang }}>
+      <div className="App">
+
+        <LandingPage />
+        <EnglishEspañolButton />
+        <MenuButton />
+
+      </div>
+    </Language.Provider>
   );
 }
-
-export default App;

@@ -1,0 +1,29 @@
+.nav {
+  display: flex;
+  align-content: center;
+  font-family: "MiFuente-header-nav-2";
+  align-self: center;
+  height: fit-content;
+  padding: 30px 0;
+  width: 100%;
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
+
+  &--list {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+
+  &--item {
+    width: fit-content;
+    padding: 0 25px;
+    font-size: 2rem;
+
+    &:hover {
+      cursor: pointer;
+      color: $green-color;
+    }
+  }
+}
