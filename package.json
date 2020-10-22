@@ -12,8 +12,7 @@
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-scripts": "3.4.3",
-    "react-scroll": "^1.8.1",
-    "validator": "^13.1.17"
+    "react-scroll": "^1.8.1"
   },
   "scripts": {
     "start": "react-scripts start",
