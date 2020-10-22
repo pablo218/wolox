@@ -1,0 +1,55 @@
+.List {
+  background-image: url("/assets/Backgrounds/Bg_Header@3x.png");
+  background-size: contain;
+  text-align: center;
+
+  @media only screen and (max-width: 768px) {
+    background-image: url("/assets/Backgrounds/Bg_Header@2x.png");
+  }
+  @media only screen and (max-width: 600px) {
+    background-image: url("/assets/Backgrounds/Bg_Header.png");
+  }
+
+  &__techs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  &__footer {
+    user-select: none;
+    color: lightgray;
+    font-family: "M-bold";
+    font-size: 30px;
+    width: 100%;
+    text-align: center;
+
+    @media only screen and (max-width: 768px) {
+      font-size: 20px;
+    }
+  }
+
+  &__searchBox {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: white;
+    font-family: "M-regular";
+    font-size: 25px;
+    border: 1px solid rgb(184, 179, 180);
+    border-radius: 5px;
+    color: #999;
+    height: 50px;
+    width: 50%;
+    padding-left: 25px;
+    text-align: center;
+
+    @media only screen and (max-width: 600px) {
+      width: 90%;
+    }
+
+    &:focus {
+      outline: none;
+      outline-width: 0;
+    }
+  }
+}
