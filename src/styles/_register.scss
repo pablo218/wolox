@@ -1,0 +1,97 @@
+.Register {
+  background-image: url("/assets/Backgrounds/Bg_Header.png");
+  background-size: contain;
+  background-position: center;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 63% 37%;
+  justify-content: center;
+
+  @media only screen and (max-width: 900px) {
+    grid-template-columns: 100%;
+  }
+
+  &--form {
+    margin: 50px auto;
+    width: 50%;
+    font-family: "M-regular";
+
+    &--title {
+      width: fit-content;
+      margin: 50px auto;
+
+      @media only screen and (max-width: 900px) {
+        font-size: 20px;
+      }
+    }
+
+    &--logo {
+      width: 50%;
+    }
+
+    @media only screen and (max-width: 1200px) {
+      width: 60%;
+    }
+    @media only screen and (max-width: 768px) {
+      width: 70%;
+    }
+    @media only screen and (max-width: 600px) {
+      width: 80%;
+    }
+  }
+
+  &__group {
+    &--input {
+      outline: none;
+      font-size: 18px;
+      font-family: inherit;
+      color: inherit;
+      background-color: white;
+      border: none;
+      border-bottom: 2px solid $green-color;
+      width: 100%;
+      display: block;
+      transition: all 0.3s;
+      margin-bottom: 10px;
+
+      &:focus {
+        border-bottom: 2px solid $blue-color;
+        //background-color: rgba(42, 167, 223, 0.3);
+      }
+
+      @media only screen and (max-width: 600px) {
+        font-size: 14px;
+      }
+    }
+
+    &--label {
+      margin-bottom: 15px;
+      color: $blue-color;
+      font-family: "M-bold";
+      font-size: 15px;
+
+      @media only screen and (max-width: 600px) {
+        font-size: 11.66px;
+      }
+    }
+  }
+
+  &--image {
+    position: relative;
+    background-color: $blue-color;
+
+    @media only screen and (max-width: 900px) {
+      display: none;
+    }
+
+    > img {
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}

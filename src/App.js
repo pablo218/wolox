@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import LandingPage from './pages/LandingPage'
+import Register from './pages/Register'
 import List from './pages/List'
 import EnglishEspañolButton from './shared/UI/EnglishEspañolButton'
 import MenuButton from './shared/UI/Mobile/MenuButton'
@@ -20,9 +21,9 @@ export default function App() {
   return (
     <Language.Provider value={{ english: english, setLang }}>
       <div className="App">
-
-        <List />
-        {/*         <LandingPage />
+        <Register />
+        {/* <List /> */}
+        {/*        <LandingPage />
         <EnglishEspañolButton />
         <MenuButton /> */}
 
