@@ -3,7 +3,8 @@
   margin: 20px 10px;
   width: 290px;
   height: 300px;
-  border: 1px solid $green-color; //lightgray;
+  border: 1px solid $green-color;
+  border-radius: 10px;
 
   &__logo {
     margin: 0 auto;

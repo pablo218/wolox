@@ -19,7 +19,7 @@ const Header = () => {
             </div>
 
             <div className="Header__right">
-                <NavBar />
+                <NavBar page="landing" />
                 <div className="Header__right--image-container">
                     <picture>
                         {/* //<source media="(min-width: 650px)" srcset="img_food.jpg" /> */}

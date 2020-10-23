@@ -2,12 +2,64 @@
   background-image: url("/assets/Backgrounds/Bg_Header@3x.png");
   background-size: contain;
   text-align: center;
+  font-family: "M-bold";
 
   @media only screen and (max-width: 768px) {
     background-image: url("/assets/Backgrounds/Bg_Header@2x.png");
   }
   @media only screen and (max-width: 600px) {
     background-image: url("/assets/Backgrounds/Bg_Header.png");
+  }
+
+  &__header {
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+
+    @media only screen and (max-width: 768px) {
+      grid-template-columns: 100%;
+      grid-template-rows: max-content max-content;
+    }
+
+    &--filters {
+      display: flex;
+    }
+
+    &--navbar {
+      padding-right: 80px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+
+      @media only screen and (max-width: 768px) {
+        padding-right: 0px;
+        justify-content: center;
+        grid-row: 1/2;
+        margin-top: 30px;
+      }
+
+      &-favoritas {
+        font-size: 13px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      &-logo {
+        justify-self: flex-end;
+        margin-left: 40px;
+      }
+    }
+
+    &--search {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      @media only screen and (max-width: 768px) {
+        flex-direction: column;
+      }
+    }
   }
 
   &__techs {
@@ -30,18 +82,24 @@
   }
 
   &__searchBox {
+    margin-right: 30px;
     margin-top: 30px;
     margin-bottom: 30px;
     background-color: white;
     font-family: "M-regular";
-    font-size: 25px;
+    font-size: 15px;
     border: 1px solid rgb(184, 179, 180);
     border-radius: 5px;
     color: #999;
-    height: 50px;
-    width: 50%;
-    padding-left: 25px;
+    height: 40px;
+    width: 40%;
     text-align: center;
+
+    @media only screen and (max-width: 768px) {
+      margin-top: 50px;
+      width: 70%;
+      margin-right: 0;
+    }
 
     @media only screen and (max-width: 600px) {
       width: 90%;
