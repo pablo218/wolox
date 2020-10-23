@@ -1,10 +1,14 @@
 .nav {
   display: flex;
-  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+  background-color: transparent;
   font-family: "MiFuente-header-nav-2";
   align-self: center;
   height: fit-content;
-  padding: 30px 0;
+  padding: 50px 8%;
+  padding-right: 6%;
+  padding-bottom: 20px;
   width: 100%;
   @media only screen and (max-width: 768px) {
     display: none;
@@ -12,8 +16,6 @@
 
   &--list {
     display: flex;
-    width: 100%;
-    justify-content: center;
   }
 
   &--item {
@@ -26,4 +28,11 @@
       color: $green-color;
     }
   }
+}
+
+a,
+a:active,
+a:visited {
+  color: black;
+  text-decoration: none;
 }

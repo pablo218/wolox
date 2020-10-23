@@ -1,42 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useReducer, useEffect } from "react";
 
-import LandingPage from './pages/LandingPage'
-import Register from './pages/Register'
-import List from './pages/List'
-import EnglishEspañolButton from './shared/UI/EnglishEspañolButton'
-import MenuButton from './shared/UI/Mobile/MenuButton'
+import AppRouter from './routers/AppRouter'
 import { Language } from './shared/Contexts/LanguageContext'
+import { FavoritesContext } from './shared/Contexts/FavoritesContext'
+import { favoritesReducer } from './shared/Contexts/favoritesReducer'
+import { AuthContext } from './auth/AuthContext'
+import { authReducer } from "./auth/authReducer";
 
 
 import "./styles/main.scss";
 
+///RECUPERO DEL USUARIO EN EL LOCAL STORAGE
+const init = () => {
+  //return JSON.parse(localStorage.getItem('user')) || { logged: false };
+  return { logged: false }
+}
+
+const extractFav = () => {
+  return JSON.parse(localStorage.getItem('tech')) || [];
+}
 
 export default function App() {
 
-  const [english, setLanguage] = useState(true);
+  const [favorites, dispatchFav] = useReducer(favoritesReducer, [], extractFav)
+
+  const [user, dispatch] = useReducer(authReducer, {}, init)
 
 
+  useEffect(() => {
+    localStorage.setItem('user', JSON.stringify(user))
+  }, [user])
 
+
+  const [english, setLanguage] = useState(false);
   const setLang = () => {
     setLanguage((eng) => !eng);
   };
 
 
   return (
-    <Language.Provider value={{ english: english, setLang }}>
-
-
-      <div className="App">
-        {/* <Register /> */}
-        <List />
-        {/* <MenuButton /> */}
-        {/* <LandingPage />
-        <EnglishEspañolButton />
-        <MenuButton /> */}
-
-      </div>
-
-
-    </Language.Provider>
+    <AuthContext.Provider value={{ user, dispatch }}>
+      <FavoritesContext.Provider value={{ favorites, dispatchFav }}>
+        <Language.Provider value={{ english: english, setLang }}>
+          <AppRouter />
+        </Language.Provider>
+      </FavoritesContext.Provider>
+    </AuthContext.Provider>
   );
 }

@@ -31,6 +31,7 @@
   width: 100vw;
   z-index: 200;
   list-style: none;
+  padding-top: 25%;
   animation-name: openMenu;
   animation-duration: 0.3s;
   animation-timing-function: linear;
@@ -50,10 +51,6 @@
     top: 0;
     left: 0;
     font-size: 8rem;
-  }
-
-  @media only screen and (max-width: 600px) {
-    //    font-size: 4rem;
   }
 }
 

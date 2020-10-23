@@ -21,6 +21,8 @@
   background-size: cover;
   background-position: center;
   display: flex;
+  padding-top: 50px;
+  padding-bottom: 100px;
 
   @media only screen and (max-width: 768px) {
     background-image: url("/assets/Backgrounds/Bg_Header.png");
@@ -30,14 +32,18 @@
     height: fit-content;
     justify-content: center;
     align-content: center;
+    padding-top: 0;
+    padding-bottom: 0;
   }
 
   &__left {
     font-family: "MiFuente-header-nav";
     width: 55%;
     display: grid;
-    grid-template-columns: repeat(10, 10%);
-    grid-template-rows: repeat(22, 4.45%);
+    padding: 100px 8%;
+
+    /*     grid-template-columns: repeat(10, 10%);
+    grid-template-rows: repeat(22, 4.45%); */
 
     @media only screen and (max-width: 768px) {
       margin: 20px auto;
@@ -49,6 +55,7 @@
       flex-direction: column;
       grid-column: 2/-1;
       grid-row: 8/-1;
+      line-height: 1.2;
       @media only screen and (max-width: 500px) {
         padding: 30px 20px;
         grid-column: 1/-1;

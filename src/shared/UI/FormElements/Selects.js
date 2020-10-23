@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 
 import { Language } from '../../Contexts/LanguageContext'
 
-//import { paisesProv, searchProvincias } from '../../Utils/PaisesProvincias'
+
 
 export const paisesProv = [{ pais: "Argentina", provincias: ["Buenos Aires", "Córdoba", "Mendoza", "San Juan", "Santa Fe"] },
 { pais: "Estados Unidos", provincias: ["San Francisco", "New York", "Dallas", "Miami", "Los Angeles"] },
@@ -11,7 +11,7 @@ export const paisesProv = [{ pais: "Argentina", provincias: ["Buenos Aires", "C�
 { pais: "Mexico", provincias: ["Ciudad de México", "Veracruz", "Oaxaca", "Durango", "Guanajuato"] },
 ]
 
-const Selects = ({ label, labelText, type }) => {
+const Selects = ({ label, labelText, errorText, errorText2 }) => {
 
     const eng = useContext(Language).english
 
@@ -43,14 +43,12 @@ const Selects = ({ label, labelText, type }) => {
         ))
     }
 
-    console.log("VALUE PAIS", valuePais)
-    console.log("VALUE PROVINCIA", valueProv)
-
 
     return (
         <>
             <div className="Register__group">
                 <label htmlFor={label} className="Register__group--label">{labelText}</label>
+                <label htmlFor={label} className="Register__group--error"><span>{errorText}</span></label>
                 <select className="Register__group--input" id={label} onChange={onChangeHandler} value={valuePais}>
                     <option value=""></option>
                     {
@@ -64,6 +62,7 @@ const Selects = ({ label, labelText, type }) => {
 
             <div className="Register__group">
                 <label htmlFor="provincia" className="Register__group--label">{eng ? "State" : "Provincia"}</label>
+                <label htmlFor={label} className="Register__group--error"><span>{errorText2}</span></label>
                 <select className="Register__group--input" id="provincia" onChange={onChangeProv} value={valueProv}>
                     <option value=""></option>
                     {provincias}

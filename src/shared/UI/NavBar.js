@@ -1,60 +1,72 @@
 import React, { useContext } from "react";
-import { Link as Scroll } from 'react-scroll'
+import { Link as Scroll } from 'react-scroll';
+import { Link, useRouteMatch } from 'react-router-dom';
 
 import Button from './Button'
+import FavoriteItem from './FavoriteItem'
 import { Language } from '../Contexts/LanguageContext'
+import { AuthContext } from '../../auth/AuthContext'
 
-const NavBar = ({ page }) => {
-
+const NavBar = () => {
 
     const eng = useContext(Language).english
+    const { user: { name } } = useContext(AuthContext)
 
-    if (page === "landing") {
-        return (
+    const matchHome = useRouteMatch('/home')
+    const matchTechs = useRouteMatch('/techs')
+
+    let navbar;
+
+    if (matchHome) {
+        navbar =
             <nav className="nav" >
+                <Link to="/home">
+                    <img className="Header__left--logo" src="./assets/logo_full_color.svg"></img>
+                </Link>
                 <ul className="nav--list">
                     <Scroll className="nav--item"
                         to="inicio"
                         smooth={true}
                         duration={1000}>
                         {eng ? "Home" : "Inicio"}</Scroll>
+
+
                     <Scroll to="beneficios"
                         className="nav--item"
                         smooth={true}
                         duration={1000}>
                         {eng ? "Benefits" : "Beneficios"}
                     </Scroll>
-                    <Scroll className="nav--item">
-                        <Button>{eng ? "Register" : "Registrarse"}</Button>
-                    </Scroll>
+
+                    {name ?
+                        <Link to="/techs"><li className="nav--item">Techs</li></Link> :
+                        <Link className="nav--item" to="/register">
+                            <Button>{eng ? "Register" : "Registrarse"}</Button>
+                        </Link>
+                    }
+                    <FavoriteItem />
                 </ul>
             </nav>
-        )
+
+    }
+    else if (matchTechs) {
+        navbar =
+            <nav className="nav" >
+                <Link to="/home">
+                    <img className="Header__left--logo" src="./assets/logo_full_color.svg"></img>
+                </Link>
+                <ul className="nav--list">
+                    <FavoriteItem />
+                </ul>
+            </nav>
+    }
+    else {
+        navbar = null
     }
 
-    /*     if (page === "techs") {
-    
-            
-    
-    
-            return (
-                <nav className="nav" >
-                    <ul className="nav--list">
-                        <Scroll className="nav--item"
-                            to="inicio"
-                            smooth={true}
-                            duration={1000}>
-                            {eng ? "Home" : "Inicio"}</Scroll>
-                        <Scroll to="beneficios"
-                            className="nav--item"
-                            smooth={true}
-                            duration={1000}>
-                            {eng ? "Benefits" : "Beneficios"}
-                        </Scroll>
-                    </ul>
-                </nav>
-            )
-        } */
+    return (<>{navbar}</>)
+
+
 
 
 }

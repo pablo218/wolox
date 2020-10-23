@@ -1,46 +1,46 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
+import { FavoritesContext } from '../shared/Contexts/FavoritesContext'
+import { types } from '../types/types'
 
 
-const ListItem = ({ year, author, license, languaje, type, logo, tech, setFavorites }) => {
+
+const ListItem = ({ year, author, license, languaje, type, logo, tech }) => {
 
     const [isfavorite, setIsFavorite] = useState(false)
 
+    const { favorites, dispatchFav } = useContext(FavoritesContext)
+
 
     useEffect(() => {
-        if (localStorage.getItem("tech") === null) {
-            localStorage.setItem("tech", JSON.stringify([]))
-        }
-        let favorites = localStorage.getItem("tech")
-        favorites = JSON.parse(favorites)
+
+
+
         favorites.forEach(element => {
             if (element.tech === tech) {
                 setIsFavorite(true)
             }
         });
-        setFavorites(favorites.length)
-    }, [isfavorite])
+
+    }, [])
 
     const favorite = () => {
         setIsFavorite(true)
-        if (localStorage.getItem("tech") === null) {
-            localStorage.setItem("tech", JSON.stringify([]))
+        dispatchFav({
+            type: types.addFavorite,
+            payload: { year, author, license, languaje, type, logo, tech }
+        })
 
-        }
-        let favorites = localStorage.getItem("tech")
-        favorites = JSON.parse(favorites)
-        const favoritesUpdated = [...favorites, { year, author, license, languaje, type, logo, tech }]
-        localStorage.setItem("tech", JSON.stringify(favoritesUpdated))
     }
 
     const nofavorite = () => {
         setIsFavorite(false)
-        let favorites = localStorage.getItem("tech")
-        favorites = JSON.parse(favorites)
-        const favoritesUpdated = favorites.filter(t => t.tech !== tech)
-        localStorage.setItem("tech", JSON.stringify(favoritesUpdated))
+        dispatchFav({
+            type: types.removeFavorite,
+            payload: { tech }
+        })
     }
 
     return (

@@ -8,7 +8,6 @@ const MenuButton = () => {
 
     const clicked = () => {
         setVisible((visible) => !visible);
-        //setVisible(!visible)
     }
 
 
