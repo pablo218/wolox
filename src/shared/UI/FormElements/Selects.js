@@ -1,41 +1,126 @@
-import React, { useState, useContext } from 'react'
+import React, { useEffect, useContext, useReducer } from 'react'
 
+import { validate } from '../../Utils/validadores'
 import { Language } from '../../Contexts/LanguageContext'
+import { paisesProv } from '../../Utils/PaisesProvincias'
+
+
+const selectReducer = (state, action) => {
+
+    switch (action.type) {
+
+        case 'CHANGE':
+            if (action.label === "PAIS") {
+                return {
+                    ...state,
+                    valueProv: "",
+                    valuePais: action.valuePais,
+                    paisIsValid: validate(action.valuePais, action.validators)
+                }
+            }
+            if (action.label === "PROV") {
+                return {
+                    ...state,
+                    valueProv: action.valueProv,
+                    provIsValid: validate(action.valueProv, action.validators)
+                }
+            }
+
+        case 'TOUCH':
+            if (action.label === "PAIS") {
+                return {
+                    ...state,
+                    paisIsTouched: true
+                }
+            }
+            if (action.label === "PROV") {
+                return {
+                    ...state,
+                    provIsTouched: true
+                }
+            }
+
+        default:
+            return state
+
+    }
+}
 
 
 
-export const paisesProv = [{ pais: "Argentina", provincias: ["Buenos Aires", "Córdoba", "Mendoza", "San Juan", "Santa Fe"] },
-{ pais: "Estados Unidos", provincias: ["San Francisco", "New York", "Dallas", "Miami", "Los Angeles"] },
-{ pais: "Chile", provincias: ["Santiago", "Valparaíso", "La Serena", "Coquimbo", "Rancagua"] },
-{ pais: "Colombia", provincias: ["Medellín", "Bogotá", "Santander", "Arauca", "Narino"] },
-{ pais: "Mexico", provincias: ["Ciudad de México", "Veracruz", "Oaxaca", "Durango", "Guanajuato"] },
-]
+const Selects = ({ id, id2, labelText, errorText, errorText2, validators, onInput }) => {
 
-const Selects = ({ label, labelText, errorText, errorText2 }) => {
+    const [selectState, dispatch] = useReducer(selectReducer, {
+        valuePais: "",
+        valueProv: "",
+        paisIsTouched: false,
+        provIsTouched: false,
+        paisIsValid: false,
+        provIsValid: false
+    })
+
+
+    const { valuePais, valueProv, provIsValid, paisIsValid } = selectState
+
+
+    useEffect(() => {
+
+        onInput(id, valuePais, paisIsValid)
+
+    }, [id, valuePais, paisIsValid, onInput])
+
+    useEffect(() => {
+
+        onInput(id2, valueProv, provIsValid)
+
+    }, [id2, valueProv, provIsValid, onInput])
+
 
     const eng = useContext(Language).english
 
-    const [valuePais, setValuePais] = useState("")
 
-    const [valueProv, setValueProv] = useState("")
+    const blurHandlerPais = () => {
+        dispatch({
+            type: "TOUCH",
+            label: "PAIS"
+        })
+    }
 
 
-    const onChangeHandler = (e) => {
-        setValueProv("")
-        setValuePais(e.target.value)
+
+    const blurHandlerProv = () => {
+        dispatch({
+            type: "TOUCH",
+            label: "PROV"
+        })
+    }
+
+
+    const onChangePais = (e) => {
+        dispatch({
+            type: "CHANGE",
+            label: "PAIS",
+            valuePais: e.target.value,
+            validators: validators
+        })
     }
 
 
     const onChangeProv = (e) => {
-        setValueProv(e.target.value)
+        dispatch({
+            type: "CHANGE",
+            label: "PROV",
+            valueProv: e.target.value,
+            validators: validators
+        })
     }
 
     let paisSeleccionado;
     let provincias;
 
-    if (valuePais != "") {
+    if (selectState.valuePais != "") {
         paisSeleccionado = paisesProv.filter(p => (
-            p.pais === valuePais
+            p.pais === selectState.valuePais
         ))
 
         provincias = paisSeleccionado[0].provincias.map((prov) => (
@@ -47,9 +132,15 @@ const Selects = ({ label, labelText, errorText, errorText2 }) => {
     return (
         <>
             <div className="Register__group">
-                <label htmlFor={label} className="Register__group--label">{labelText}</label>
-                <label htmlFor={label} className="Register__group--error"><span>{errorText}</span></label>
-                <select className="Register__group--input" id={label} onChange={onChangeHandler} value={valuePais}>
+                <label htmlFor={id} className="Register__group--label">{labelText}</label>
+                {!selectState.paisIsValid && selectState.paisIsTouched &&
+                    <label htmlFor={id} className="Register__group--error"><span>{errorText}</span></label>
+                }
+                <select className="Register__group--input"
+                    id={id}
+                    onChange={onChangePais}
+                    value={selectState.valuePais}
+                    onBlur={blurHandlerPais}>
                     <option value=""></option>
                     {
                         paisesProv.map(pais => (
@@ -61,9 +152,15 @@ const Selects = ({ label, labelText, errorText, errorText2 }) => {
             </div>
 
             <div className="Register__group">
-                <label htmlFor="provincia" className="Register__group--label">{eng ? "State" : "Provincia"}</label>
-                <label htmlFor={label} className="Register__group--error"><span>{errorText2}</span></label>
-                <select className="Register__group--input" id="provincia" onChange={onChangeProv} value={valueProv}>
+                <label htmlFor={id2} className="Register__group--label">{eng ? "State" : "Provincia"}</label>
+                {!selectState.provIsValid && selectState.provIsTouched &&
+                    <label htmlFor="provincia" className="Register__group--error"><span>{errorText2}</span></label>
+                }
+                <select className="Register__group--input"
+                    id={id2}
+                    onChange={onChangeProv}
+                    value={selectState.valueProv}
+                    onBlur={blurHandlerProv}>
                     <option value=""></option>
                     {provincias}
                 </select>

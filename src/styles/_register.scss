@@ -57,11 +57,17 @@
       margin-bottom: 10px;
 
       &:focus {
+        background-color: rgba(42, 167, 223, 0.2);
         border-bottom: 2px solid $blue-color;
       }
 
       @media only screen and (max-width: 600px) {
         font-size: 14px;
+      }
+
+      &--error {
+        border-bottom: 2px solid red;
+        background-color: rgba(255, 51, 0, 0.2);
       }
     }
 
@@ -104,5 +110,17 @@
       left: 50%;
       transform: translate(-50%, -50%);
     }
+  }
+}
+
+.buton--check {
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  &--terms {
+    display: flex;
+    align-items: center;
   }
 }

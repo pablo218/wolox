@@ -22,6 +22,15 @@
     background-color: $blue-color;
     color: white;
   }
+
+  &:disabled {
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: white;
+      color: $blue-color;
+    }
+  }
 }
 
 .bg-transparent {
@@ -123,51 +132,3 @@
     }
   }
 }
-
-/*   &__icon {
-    cursor: pointer;
-    position: relative;
-
-    &,
-    &::after,
-    &::before {
-      cursor: pointer;
-      width: 40px;
-      height: 40px;
-      background-color: black;
-      display: inline-block;
-
-      @media only screen and (max-width: 1000px) {
-        background-color: $green-color;
-      }
-    }
-
-    &::after,
-    &::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      transition: all 0.2s;
-    }
-
-    &::after {
-      top: 10px;
-    }
-    &::before {
-      top: -10px;
-    }
-
-    &__clicked {
-      background-color: transparent;
-
-      &::before {
-        top: 0;
-        transform: rotate(135deg);
-      }
-
-      &::after {
-        top: 0;
-        transform: rotate(-135deg);
-      }
-    }
-  } */

@@ -24,7 +24,7 @@ export default function App() {
 
   const [favorites, dispatchFav] = useReducer(favoritesReducer, [], extractFav)
 
-  const [user, dispatch] = useReducer(authReducer, {}, init)
+  const [user, dispatchUser] = useReducer(authReducer, {}, init)
 
 
   useEffect(() => {
@@ -39,7 +39,7 @@ export default function App() {
 
 
   return (
-    <AuthContext.Provider value={{ user, dispatch }}>
+    <AuthContext.Provider value={{ user, dispatchUser }}>
       <FavoritesContext.Provider value={{ favorites, dispatchFav }}>
         <Language.Provider value={{ english: english, setLang }}>
           <AppRouter />
