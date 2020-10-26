@@ -1,18 +1,19 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 
 import ListItem from '../components/ListItem';
-import { listado } from './listado';
 import { Language } from '../shared/Contexts/LanguageContext';
+import { fetchFunction } from '../shared/Utils/fetchFunction'
 
 
 const List = () => {
 
     const eng = useContext(Language).english
 
+    const [listado, setListado] = useState([])
     const [value, setValue] = useState("")
     const [orderA, setOrderA] = useState(false)
     const [orderZ, setOrderZ] = useState(false)
@@ -20,6 +21,15 @@ const List = () => {
     const onChangeHandler = (e) => {
         setValue(e.target.value)
     }
+
+
+    useEffect(() => {
+        fetchFunction("http://private-8e8921-woloxfrontendinverview.apiary-mock.com/techs")
+            .then(responseData => {
+                setListado(responseData)
+            })
+    }, [])
+
 
     let listadoFiltrado;
 

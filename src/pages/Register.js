@@ -9,6 +9,7 @@ import { types } from '../types/types'
 import Button from '../shared/UI/Button'
 import Input from '../shared/UI/FormElements/Inputs'
 import Select from '../shared/UI/FormElements/Selects'
+//import Password from '../shared/UI/FormElements/Password'
 import { useForm } from '../shared/hooks/form-hook'
 import { registerInputs } from '../shared/Utils/registerInputs'
 import {
@@ -18,6 +19,7 @@ import {
     VALIDATOR_PHONE,
     VALIDATOR_REQUIRE
 } from '../shared/Utils/validadores'
+import { fetchFunction } from '../shared/Utils/fetchFunction'
 
 const Register = () => {
 
@@ -33,13 +35,33 @@ const Register = () => {
 
     const handleRegister = (e) => {
         e.preventDefault()
-        dispatchUser({
-            type: types.login,
-            payload: {
-                name: "Pablo"
+        fetchFunction(
+            "http://private-8e8921-woloxfrontendinverview.apiary-mock.com/signup",
+            {
+                method: "POST",
+                body: JSON.stringify({
+                    name: formState.inputs.name.value,
+                    last_name: formState.inputs.last_name.value,
+                    country: formState.inputs.country.value,
+                    province: formState.inputs.province.value,
+                    mail: formState.inputs.mail.value,
+                    phone: formState.inputs.phone.value,
+                    password: formState.inputs.password.value,
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             }
-        })
-        history.push("/techs")
+        )
+            .then(responseData => {
+                dispatchUser({
+                    type: types.login,
+                    payload: {
+                        token: responseData.token
+                    }
+                })
+                history.push("/techs")
+            })
     }
 
     const termsHandler = () => {
@@ -55,7 +77,6 @@ const Register = () => {
         }
     }
 
-
     return (
         <>
 
@@ -68,55 +89,59 @@ const Register = () => {
                     <h1 className="Register--form--title">{eng ? "Sign Up" : "Registrarse"}</h1>
 
                     <Input
-                        id="nombre"
+                        id="name"
                         labelText={eng ? "Name" : "Nombre"}
                         type="text"
-                        errorText={eng ? "required - max 30 characters" : "obligaotrio - máximo 30 caracteres"}
                         validators={[VALIDATOR_REQUIRE()]}
                         onInput={inputHandler}
                     />
 
                     <Input
-                        id="apellido"
+                        id="last_name"
                         labelText={eng ? "Surname" : "Apellido"}
                         type="text"
-                        errorText={eng ? "required - max 30 characters" : "obligaotrio - máximo 30 caracteres"}
                         validators={[VALIDATOR_REQUIRE()]}
                         onInput={inputHandler}
                     />
                     <Select
-                        id="pais"
-                        id2="provincia"
+                        id="country"
+                        id2="province"
                         labelText={eng ? "Country" : "País"}
-                        errorText={eng ? "Country is required" : "País es obligaotrio"}
-                        errorText2={eng ? "State is required" : "Provincia es obligaotrio"}
+                        errorText={eng ? "Country is required" : "Campo Obligaotrio"}
+                        errorText2={eng ? "State is required" : "Campo Obligaotrio"}
                         validators={[VALIDATOR_REQUIRE()]}
                         onInput={inputHandler}
                     />
 
                     <Input
-                        id="email"
+                        id="mail"
                         labelText="Email"
                         type="text"
-                        errorText={eng ? "required - use a valid format" : "obligatorio - usar un formato válido"}
                         validators={[VALIDATOR_EMAIL(), VALIDATOR_REQUIRE()]}
                         onInput={inputHandler}
                     />
 
                     <Input
-                        id="telefono"
+                        id="phone"
                         labelText={eng ? "Phone" : "Teléfono"}
                         type="text"
-                        errorText={eng ? "*required - max 10 digits" : "*obligatorio - maximo 10 dígitos"}
                         validators={[VALIDATOR_REQUIRE(), VALIDATOR_PHONE()]}
                         onInput={inputHandler}
-
                     />
-                    <Input
+
+                    {/* <Password
                         id="contraseña"
                         labelText={eng ? "Password" : "Contraseña"}
+                        validators={[VALIDATOR_PASS(), VALIDATOR_REQUIRE()]}
+                        pass1={formState.inputs.contraseña.value}
+                        onInput={inputHandler}
+                    /> */}
+
+
+                    <Input
+                        id="password"
+                        labelText={eng ? "Password" : "Contraseña"}
                         type="text"
-                        errorText={eng ? "required - min 6 characters - alphanumeric " : "*obligatorio - minimo 6 caracteres - alfanumérica"}
                         validators={[VALIDATOR_PASS(), VALIDATOR_REQUIRE()]}
                         onInput={inputHandler}
                     />
@@ -124,8 +149,7 @@ const Register = () => {
                         id="repcontraseña"
                         labelText={eng ? "Repeat Password" : "Repetir Contraseña"}
                         type="text"
-                        errorText={eng ? "Passwords doesn't match" : "Las contraseñas no coinciden"}
-                        validators={[VALIDATOR_REPEATPASS(formState.inputs.contraseña.value)]}
+                        validators={[VALIDATOR_REPEATPASS(formState.inputs.password.value)]}
                         onInput={inputHandler}
                     />
                     <div className="buton--check">

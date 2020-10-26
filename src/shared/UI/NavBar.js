@@ -10,7 +10,7 @@ import { AuthContext } from '../../auth/AuthContext'
 const NavBar = () => {
 
     const eng = useContext(Language).english
-    const { user: { name } } = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
 
     const matchHome = useRouteMatch('/home')
     const matchTechs = useRouteMatch('/techs')
@@ -38,7 +38,7 @@ const NavBar = () => {
                         {eng ? "Benefits" : "Beneficios"}
                     </Scroll>
 
-                    {name ?
+                    {user.logged ?
                         <Link to="/techs"><li className="nav--item">Techs</li></Link> :
                         <Link className="nav--item" to="/register">
                             <Button>{eng ? "Register" : "Registrarse"}</Button>

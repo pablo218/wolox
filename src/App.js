@@ -10,10 +10,10 @@ import { authReducer } from "./auth/authReducer";
 
 import "./styles/main.scss";
 
-///RECUPERO DEL USUARIO EN EL LOCAL STORAGE
+
 const init = () => {
-  //return JSON.parse(localStorage.getItem('user')) || { logged: false };
-  return { logged: false }
+  return JSON.parse(localStorage.getItem('user')) || { logged: false };
+
 }
 
 const extractFav = () => {

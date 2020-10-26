@@ -15,22 +15,20 @@ const ListItem = ({ year, author, license, languaje, type, logo, tech }) => {
 
 
     useEffect(() => {
-
-
-
         favorites.forEach(element => {
-            if (element.tech === tech) {
+            if (element === tech) {
                 setIsFavorite(true)
             }
         });
 
-    }, [])
+    }, [isfavorite])
 
     const favorite = () => {
         setIsFavorite(true)
         dispatchFav({
             type: types.addFavorite,
-            payload: { year, author, license, languaje, type, logo, tech }
+            payload: tech
+
         })
 
     }
@@ -39,7 +37,7 @@ const ListItem = ({ year, author, license, languaje, type, logo, tech }) => {
         setIsFavorite(false)
         dispatchFav({
             type: types.removeFavorite,
-            payload: { tech }
+            payload: tech
         })
     }
 

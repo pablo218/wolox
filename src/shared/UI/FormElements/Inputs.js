@@ -6,11 +6,14 @@ const inputReducer = (state, action) => {
     switch (action.type) {
 
         case 'CHANGE':
+
+            const { isValid, errorText } = validate(action.val, action.validators)
+
             return {
                 ...state,
                 value: action.val,
-                isValid: validate(action.val, action.validators)
-
+                isValid: isValid,
+                errorText: errorText
             }
 
         case 'TOUCH':
@@ -25,9 +28,9 @@ const inputReducer = (state, action) => {
 }
 
 
-const Inputs = ({ id, labelText, type, max, validators, onInput, errorText }) => {
+const Inputs = ({ id, labelText, type, max, validators, onInput }) => {
 
-    const [inputState, dispatch] = useReducer(inputReducer, { value: "", isValid: false, isTouched: false })
+    const [inputState, dispatch] = useReducer(inputReducer, { value: "", isValid: false, isTouched: false, errorText: "" })
 
     const { value, isValid } = inputState
 
@@ -43,7 +46,7 @@ const Inputs = ({ id, labelText, type, max, validators, onInput, errorText }) =>
         dispatch({
             type: "CHANGE",
             val: e.target.value,
-            validators: validators
+            validators: validators,
         })
     }
 
@@ -60,7 +63,7 @@ const Inputs = ({ id, labelText, type, max, validators, onInput, errorText }) =>
             <label htmlFor={id} className="Register__group--label"><span>{labelText}</span></label>
 
             {!inputState.isValid && inputState.isTouched &&
-                <label htmlFor={id} className="Register__group--error"><span>{errorText}</span></label>
+                <label htmlFor={id} className="Register__group--error"><span>{inputState.errorText === "" ? "Campo Obligatorio" : inputState.errorText}</span></label>
             }
 
             <input

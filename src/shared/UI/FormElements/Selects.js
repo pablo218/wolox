@@ -11,18 +11,22 @@ const selectReducer = (state, action) => {
 
         case 'CHANGE':
             if (action.label === "PAIS") {
+                const { isValid, errorText } = validate(action.valuePais, action.validators)
                 return {
                     ...state,
                     valueProv: "",
+                    provIsValid: false,
                     valuePais: action.valuePais,
-                    paisIsValid: validate(action.valuePais, action.validators)
+                    paisIsValid: isValid,
+
                 }
             }
             if (action.label === "PROV") {
+                const { isValid, errorText } = validate(action.valueProv, action.validators)
                 return {
                     ...state,
                     valueProv: action.valueProv,
-                    provIsValid: validate(action.valueProv, action.validators)
+                    provIsValid: isValid
                 }
             }
 

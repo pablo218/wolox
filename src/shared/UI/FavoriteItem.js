@@ -8,12 +8,12 @@ const FavoriteItem = () => {
 
     const { favorites } = useContext(FavoritesContext)
 
-    const { user: { name } } = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
 
     let item;
 
 
-    if (favorites.length > 0 && name) {
+    if (favorites.length > 0 && user.logged) {
         item = <li>
             <p className="favoriteItem"><FavoriteIcon style={{ fontSize: "30px", color: "#a3cc39", marginLeft: "15px" }} />
                 <span className="favoriteItem--text">Techs:</span> {favorites.length}</p>

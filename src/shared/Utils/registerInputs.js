@@ -1,29 +1,29 @@
 export const registerInputs = {
-    nombre: {
+    name: {
         value: "",
         isValid: false
     },
-    apellido: {
+    last_name: {
         value: "",
         isValid: false
     },
-    pais: {
+    country: {
         value: "",
         isValid: false
     },
-    provincia: {
+    province: {
         value: "",
         isValid: false
     },
-    email: {
+    mail: {
         value: "",
         isValid: false
     },
-    telefono: {
+    phone: {
         value: "",
         isValid: false
     },
-    contraseña: {
+    password: {
         value: "",
         isValid: false
     },
