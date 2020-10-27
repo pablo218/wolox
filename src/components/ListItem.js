@@ -1,20 +1,14 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState } from 'react'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
-import { FavoritesContext } from '../shared/Contexts/FavoritesContext'
-import { types } from '../types/types'
 
-
-
-const ListItem = ({ year, author, license, languaje, type, logo, tech }) => {
+const ListItem = ({ year, author, license, languaje, type, logo, tech, favoriteClick, nofavoriteClick }) => {
 
     const [isfavorite, setIsFavorite] = useState(false)
 
-    const { favorites, dispatchFav } = useContext(FavoritesContext)
-
-
     useEffect(() => {
+        let favorites = JSON.parse(localStorage.getItem("tech"))
         favorites.forEach(element => {
             if (element === tech) {
                 setIsFavorite(true)
@@ -23,22 +17,18 @@ const ListItem = ({ year, author, license, languaje, type, logo, tech }) => {
 
     }, [isfavorite])
 
+
     const favorite = () => {
         setIsFavorite(true)
-        dispatchFav({
-            type: types.addFavorite,
-            payload: tech
+        favoriteClick(tech)
 
-        })
 
     }
 
     const nofavorite = () => {
         setIsFavorite(false)
-        dispatchFav({
-            type: types.removeFavorite,
-            payload: tech
-        })
+        nofavoriteClick(tech)
+
     }
 
     return (

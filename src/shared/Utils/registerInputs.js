@@ -27,10 +27,6 @@ export const registerInputs = {
         value: "",
         isValid: false
     },
-    repcontraseña: {
-        value: "",
-        isValid: false
-    },
 
 
 }

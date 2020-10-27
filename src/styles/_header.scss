@@ -42,9 +42,6 @@
     display: grid;
     padding: 100px 8%;
 
-    /*     grid-template-columns: repeat(10, 10%);
-    grid-template-rows: repeat(22, 4.45%); */
-
     @media only screen and (max-width: 768px) {
       margin: 20px auto;
       width: 100%;
@@ -70,16 +67,6 @@
         color: $green-color;
       }
     }
-
-    &--logo {
-      width: 20rem;
-      grid-column: 2/6;
-      grid-row: 3/4;
-      @media only screen and (max-width: 500px) {
-        padding: 30px 20px;
-        grid-column: 1/-1;
-      }
-    }
   }
 
   &__right {
@@ -97,8 +84,6 @@
       height: fit-content;
 
       @media only screen and (max-width: 768px) {
-        height: fit-content;
-        //position: relative;
       }
     }
 

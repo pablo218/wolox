@@ -1,25 +1,52 @@
-import React, { useState, useEffect, useReducer } from 'react'
+import React, { useContext, useEffect, useReducer } from 'react'
 import { validate } from '../../Utils/validadores'
+import { VALIDATOR_REQUIRE, VALIDATOR_PASS, VALIDATOR_REPEATPASS } from '../../Utils/validadores'
+
+import { Language } from '../../Contexts/LanguageContext'
 
 const inputReducer = (state, action) => {
 
     switch (action.type) {
 
-        case 'CHANGE':
+        case 'CHANGE-PASS':
 
             const { isValid, errorText } = validate(action.val, action.validators)
 
+            let isvalidRep;
+
+            if (action.val != "" && action.val2 != "") {
+                isvalidRep = action.val === action.val2
+            }
             return {
                 ...state,
                 value: action.val,
                 isValid: isValid,
-                errorText: errorText
+                errorText: errorText,
+                isValid2: isvalidRep,
+                errorText2: "Las contraseñas no coinciden"
+            }
+
+        case 'CHANGE-PASS-R':
+
+            let isValid2 = action.val === action.pass1
+
+            return {
+                ...state,
+                value2: action.val,
+                isValid2: isValid2,
+                errorText2: "Las contraseñas no coinciden",
             }
 
         case 'TOUCH':
             return {
                 ...state,
                 isTouched: true,
+            }
+
+        case 'TOUCH-R':
+            return {
+                ...state,
+                isTouched2: true,
             }
 
         case "PASSCHANGED":
@@ -35,104 +62,105 @@ const inputReducer = (state, action) => {
 }
 
 
-const Inputs = ({ id, labelText, type, max, validators, pass1, onInput }) => {
+const Inputs = ({ onInput }) => {
 
-    const [inputState, dispatch] = useReducer(inputReducer, { value: "", isValid: false, isTouched: false, errorText: "" })
+    const eng = useContext(Language).english
 
-    const { value, isValid } = inputState
+    const [inputState, dispatch] = useReducer(inputReducer, {
+        value: "", value2: "",
+        isValid: false, isValid2: false,
+        isTouched: false, isTouched2: false,
+        errorText: "", errorText2: ""
+    })
+
+    const { value, isValid, isValid2 } = inputState
+
 
     useEffect(() => {
 
-        onInput(id, value, isValid)
+        const passValid = isValid2 && isValid;
 
-    }, [id, value, isValid, onInput])
+        onInput("password", value, passValid);
+
+    }, [value, isValid, isValid2, onInput])
 
 
     const changeHandler = (e) => {
 
         dispatch({
-            type: "CHANGE",
+            type: "CHANGE-PASS",
             val: e.target.value,
-            validators: validators,
+            val2: inputState.value2,
+            validators: [VALIDATOR_PASS(e.target.value), VALIDATOR_REQUIRE(e.target.value)]
         })
     }
 
-    const blurHandler = () => {
+    const changeHandler__rep = (e) => {
+        dispatch({
+            type: 'CHANGE-PASS-R',
+            val: e.target.value,
+            pass1: inputState.value
+
+        })
+    }
+
+    const blurHandler = (e) => {
         dispatch({
             type: "TOUCH"
         })
     }
 
-
-    /*****REPETAT PASS ******/
-
-    const [repValue, setRepValue] = useState("")
-    const [repError, setrepError] = useState("")
-
-    useEffect(() => {
-
-        if (repValue !== pass1) {
-
-            setrepError("Las Contraseñas no coinciden")
-
-            dispatch({
-                type: "PASSCHANGED",
-                isValid: false
-            })
-        }
-        else {
-            setrepError("")
-
-            const { isvalid } = validate(pass1, validators)
-
-            dispatch({
-                type: "PASSCHANGED",
-                isValid: isvalid
-            })
-        }
-
-    }, [pass1, repValue])
-
-
-    const prepChange = (e) => {
-        setRepValue(e.target.value)
+    const blurHandler__rep = (e) => {
+        dispatch({
+            type: "TOUCH-R"
+        })
     }
 
 
     return (
         <>
             <div className="Register__group">
-                <label htmlFor={id} className="Register__group--label"><span>{labelText}</span></label>
+                <label htmlFor="contraseña" className="Register__group--label">
+                    {eng ? "Password" : "Contraseña"}
+                </label>
                 {!inputState.isValid && inputState.isTouched &&
-                    <label htmlFor={id} className="Register__group--error"><span>{inputState.errorText}</span></label> //inputState.errorText === "" ? "Campo Obligatorio" : 
+                    <label htmlFor="contraseña" className="Register__group--error">
+                        <span>{inputState.errorText === "" ? "Campo Obligatorio" : inputState.errorText}</span>
+                    </label>
                 }
                 <input
-                    type={type}
+                    type="password"
                     className={`Register__group--input
                              ${!inputState.isValid && inputState.isTouched && "Register__group--input--error"}`}
-                    id={id} autoComplete="off"
-                    maxLength={max}
+                    id="contraseña"
+                    autoComplete="off"
                     onChange={changeHandler}
                     value={inputState.value}
                     onBlur={blurHandler}
                 />
             </div>
 
-
             <div className="Register__group">
-                <label htmlFor="repcontraseña" className="Register__group--label"><span>Repetir Contraseña</span></label>
-                {!inputState.isValid && inputState.isTouched &&
-                    <label htmlFor={id} className="Register__group--error"><span>{repError}</span></label> //repError === "" ? "Campo requerido" : 
+                <label htmlFor="repcontraseña" className="Register__group--label">
+                    {eng ? "Repeat password" : "Repetir contraseña"}
+                </label>
+                {!inputState.isValid2 && inputState.isTouched2 &&
+                    <label htmlFor="repcontraseña" className="Register__group--error">
+                        <span>{inputState.errorText2 === "" ? "Campo Obligatorio" : inputState.errorText2}</span>
+                    </label>
                 }
                 <input
-                    type="text"
-                    className={`Register__group--input`}
+                    type="password"
+                    className={`Register__group--input
+                             ${!inputState.isValid2 && inputState.isTouched2 && "Register__group--input--error"}`}
                     id="repcontraseña"
-                    onChange={prepChange}
-                    value={repValue}
-                    onBlur={blurHandler}
+                    autoComplete="off"
+                    onChange={changeHandler__rep}
+                    value={inputState.value2}
+                    onBlur={blurHandler__rep}
                 />
             </div>
+
         </>
     )
 }

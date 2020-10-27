@@ -9,7 +9,7 @@ import { types } from '../types/types'
 import Button from '../shared/UI/Button'
 import Input from '../shared/UI/FormElements/Inputs'
 import Select from '../shared/UI/FormElements/Selects'
-//import Password from '../shared/UI/FormElements/Password'
+import Password from '../shared/UI/FormElements/Password'
 import { useForm } from '../shared/hooks/form-hook'
 import { registerInputs } from '../shared/Utils/registerInputs'
 import {
@@ -77,6 +77,8 @@ const Register = () => {
         }
     }
 
+    console.log(formState.isValid)
+
     return (
         <>
 
@@ -129,16 +131,17 @@ const Register = () => {
                         onInput={inputHandler}
                     />
 
-                    {/* <Password
-                        id="contraseña"
-                        labelText={eng ? "Password" : "Contraseña"}
-                        validators={[VALIDATOR_PASS(), VALIDATOR_REQUIRE()]}
-                        pass1={formState.inputs.contraseña.value}
+                    <Password
+                        /* id="contraseña"
+                        labelText={eng ? "Password" : "Contraseña"} */
+                        /* validators={[VALIDATOR_PASS(), VALIDATOR_REQUIRE()]}
+                        validators={[VALIDATOR_PASS(), VALIDATOR_REQUIRE()]} */
+                        //pass1={formState.inputs.contraseña.value}
                         onInput={inputHandler}
-                    /> */}
+                    />
 
 
-                    <Input
+                    {/*                     <Input
                         id="password"
                         labelText={eng ? "Password" : "Contraseña"}
                         type="text"
@@ -151,7 +154,7 @@ const Register = () => {
                         type="text"
                         validators={[VALIDATOR_REPEATPASS(formState.inputs.password.value)]}
                         onInput={inputHandler}
-                    />
+                    /> */}
                     <div className="buton--check">
                         <Button
                             clicked={handleRegister}

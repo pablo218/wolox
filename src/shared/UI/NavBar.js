@@ -21,7 +21,7 @@ const NavBar = () => {
         navbar =
             <nav className="nav" >
                 <Link to="/home">
-                    <img className="Header__left--logo" src="./assets/logo_full_color.svg"></img>
+                    <img className="nav--logo" src="./assets/logo_full_color.svg" />
                 </Link>
                 <ul className="nav--list">
                     <Scroll className="nav--item"
@@ -51,13 +51,10 @@ const NavBar = () => {
     }
     else if (matchTechs) {
         navbar =
-            <nav className="nav" >
+            <nav className="nav">
                 <Link to="/home">
-                    <img className="Header__left--logo" src="./assets/logo_full_color.svg"></img>
+                    <img className="nav--logo" src="./assets/logo_full_color.svg" />
                 </Link>
-                <ul className="nav--list">
-                    <FavoriteItem />
-                </ul>
             </nav>
     }
     else {
@@ -72,5 +69,3 @@ const NavBar = () => {
 }
 
 export default NavBar
-
-

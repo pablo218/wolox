@@ -1,12 +1,11 @@
 import React, { useContext } from 'react';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
-import { FavoritesContext } from '../Contexts/FavoritesContext';
 import { AuthContext } from '../../auth/AuthContext'
 
 const FavoriteItem = () => {
 
-    const { favorites } = useContext(FavoritesContext)
+    const favorites = JSON.parse(localStorage.getItem("tech"))
 
     const { user } = useContext(AuthContext)
 

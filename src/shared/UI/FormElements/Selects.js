@@ -156,7 +156,7 @@ const Selects = ({ id, id2, labelText, errorText, errorText2, validators, onInpu
             </div>
 
             <div className="Register__group">
-                <label htmlFor={id2} className="Register__group--label">{eng ? "State" : "Provincia"}</label>
+                <label htmlFor={id2} className="Register__group--label">{eng ? "Province" : "Provincia"}</label>
                 {!selectState.provIsValid && selectState.provIsTouched &&
                     <label htmlFor="provincia" className="Register__group--error"><span>{errorText2}</span></label>
                 }

@@ -3,15 +3,19 @@ import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 import ListItem from '../components/ListItem';
 import { Language } from '../shared/Contexts/LanguageContext';
 import { fetchFunction } from '../shared/Utils/fetchFunction'
 
 
+
 const List = () => {
 
     const eng = useContext(Language).english
+
+    const [favState, setfavState] = useState([])
 
     const [listado, setListado] = useState([])
     const [value, setValue] = useState("")
@@ -23,12 +27,17 @@ const List = () => {
     }
 
 
+
     useEffect(() => {
         fetchFunction("http://private-8e8921-woloxfrontendinverview.apiary-mock.com/techs")
             .then(responseData => {
                 setListado(responseData)
             })
+
     }, [])
+
+
+    /***filtros****/
 
 
     let listadoFiltrado;
@@ -75,11 +84,37 @@ const List = () => {
         setOrderZ(x => !x)
     }
 
+    /*****favoritos*****/
+
+    let favoritos = JSON.parse(localStorage.getItem("tech"))
+
+    const favoriteClick = (tech) => {
+
+        const newFav = [...favoritos, tech]
+        localStorage.setItem("tech", JSON.stringify(newFav))
+        setfavState(newFav)
+
+    }
+
+    const nofavoriteClick = (tech) => {
+
+        const newFav = favoritos.filter(fav => fav !== tech)
+
+        localStorage.setItem("tech", JSON.stringify(newFav))
+        setfavState(newFav)
+    }
 
     return (
         <div className="List">
             <div className="List__header">
                 <div className="List__header--search">
+                    {favoritos.length > 0 ?
+                        <div className="List__header--search--favs">
+                            <p style={{ fontSize: "20px" }} >{favoritos.length}</p>
+                            <FavoriteIcon style={{ fontSize: "30px", marginRight: "20px", color: "#a3cc39" }} />
+                        </div>
+                        : null
+                    }
                     <input type="text"
                         className="List__searchBox"
                         value={value}
@@ -117,6 +152,8 @@ const List = () => {
                         logo={tech.logo}
                         tech={tech.tech}
                         key={tech.tech}
+                        favoriteClick={(tech) => favoriteClick(tech)}
+                        nofavoriteClick={(tech) => nofavoriteClick(tech)}
                     />
                 })}
             </div>
