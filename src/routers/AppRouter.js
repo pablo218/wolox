@@ -9,6 +9,7 @@ import { AuthContext } from '../auth/AuthContext';
 import NavBar from '../shared/UI/NavBar';
 import MenuButton from '../shared/UI/Mobile/MenuButton';
 import EnglishEspañolButton from '../shared/UI/EnglishEspañolButton';
+import Spinner from "../shared/UI/Spinner/Spinner"
 
 const LandingPage = React.lazy(() => import('../pages/LandingPage'));
 const Register = React.lazy(() => import('../pages/Register'));
@@ -24,8 +25,8 @@ const AppRouter = () => {
     if (user.logged) {
         routes = (
             <Switch>
-                <Route path="/techs" render={() => (<Suspense fallback={<div className="loading">Loading...</div>}><List /></Suspense>)} />
-                <Route path="/home" render={() => (<Suspense fallback={<div className="loading">Loading...</div>}><LandingPage /></Suspense>)} />
+                <Route path="/techs" render={() => (<Suspense fallback={<Spinner />}><List /></Suspense>)} />
+                <Route path="/home" render={() => (<Suspense fallback={<Spinner />}><LandingPage /></Suspense>)} />
                 <Redirect to="/techs" />
             </Switch>
         )
@@ -33,8 +34,8 @@ const AppRouter = () => {
     else {
         routes = (
             <Switch>
-                <Route path="/register" render={() => (<Suspense fallback={<div className="loading">Loading...</div>}><Register /></Suspense>)} />
-                <Route path="/home" render={() => (<Suspense fallback={<div className="loading">Loading...</div>}><LandingPage /></Suspense>)} />
+                <Route path="/register" render={() => (<Suspense fallback={<Spinner />}><Register /></Suspense>)} />
+                <Route path="/home" render={() => (<Suspense fallback={<Spinner />}><LandingPage /></Suspense>)} />
                 <Redirect to="/home" />
             </Switch>
         )
@@ -58,3 +59,4 @@ const AppRouter = () => {
 export default AppRouter
 
 
+/*<div className="loading">Loading...</div>*/

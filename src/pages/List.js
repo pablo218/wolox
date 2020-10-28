@@ -1,13 +1,14 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
+import Spinner from '../shared/UI/Spinner/Spinner'
 import ListItem from '../components/ListItem';
 import { Language } from '../shared/Contexts/LanguageContext';
-import { fetchFunction } from '../shared/Utils/fetchFunction'
+import { useFetch } from '../shared/hooks/fetch-hook'
 
 
 
@@ -16,8 +17,6 @@ const List = () => {
     const eng = useContext(Language).english
 
     const [favState, setfavState] = useState([])
-
-    const [listado, setListado] = useState([])
     const [value, setValue] = useState("")
     const [orderA, setOrderA] = useState(false)
     const [orderZ, setOrderZ] = useState(false)
@@ -26,15 +25,7 @@ const List = () => {
         setValue(e.target.value)
     }
 
-
-
-    useEffect(() => {
-        fetchFunction("http://private-8e8921-woloxfrontendinverview.apiary-mock.com/techs")
-            .then(responseData => {
-                setListado(responseData)
-            })
-
-    }, [])
+    const { data: listado, loading } = useFetch("http://private-8e8921-woloxfrontendinverview.apiary-mock.com/techs")
 
 
     /***filtros****/
@@ -42,7 +33,7 @@ const List = () => {
 
     let listadoFiltrado;
 
-    if (value != "") {
+    if (value !== "") {
         listadoFiltrado = listado.filter(tech => (
             tech.tech.toLocaleLowerCase().includes(value.toLocaleLowerCase()) ||
             tech.type.toLocaleLowerCase().includes(value.toLocaleLowerCase())
@@ -111,7 +102,7 @@ const List = () => {
                     {favoritos.length > 0 ?
                         <div className="List__header--search--favs">
                             <p style={{ fontSize: "20px" }} >{favoritos.length}</p>
-                            <FavoriteIcon style={{ fontSize: "30px", marginRight: "20px", color: "#a3cc39" }} />
+                            <FavoriteIcon style={{ fontSize: "30px", marginRight: "20px", color: "#a3cc39" }} className="List__header--search--icon" />
                         </div>
                         : null
                     }
@@ -143,21 +134,26 @@ const List = () => {
 
                 </div>
             </div>
-            <div className="List__techs">
-                {listadoFiltrado.map(tech => {
-                    return <ListItem year={tech.year}
-                        author={tech.author}
-                        license={tech.license}
-                        languaje={tech.language}
-                        type={tech.type}
-                        logo={tech.logo}
-                        tech={tech.tech}
-                        key={tech.tech}
-                        favoriteClick={(tech) => favoriteClick(tech)}
-                        nofavoriteClick={(tech) => nofavoriteClick(tech)}
-                    />
-                })}
-            </div>
+
+            {loading ? <Spinner /> :
+                <div className="List__techs">
+                    {listadoFiltrado.map(tech => {
+                        return <ListItem year={tech.year}
+                            author={tech.author}
+                            license={tech.license}
+                            languaje={tech.language}
+                            type={tech.type}
+                            logo={tech.logo}
+                            tech={tech.tech}
+                            key={tech.tech}
+                            favoriteClick={(tech) => favoriteClick(tech)}
+                            nofavoriteClick={(tech) => nofavoriteClick(tech)}
+                        />
+                    })}
+                </div>
+            }
+
+
             <p className="List__footer">{eng ? "Listed technologies:" : "Tecnologías listadas:"} {listadoFiltrado.length}</p>
         </div>
     )

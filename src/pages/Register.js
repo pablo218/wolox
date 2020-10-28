@@ -14,8 +14,6 @@ import { useForm } from '../shared/hooks/form-hook'
 import { registerInputs } from '../shared/Utils/registerInputs'
 import {
     VALIDATOR_EMAIL,
-    VALIDATOR_PASS,
-    VALIDATOR_REPEATPASS,
     VALIDATOR_PHONE,
     VALIDATOR_REQUIRE
 } from '../shared/Utils/validadores'
@@ -35,6 +33,7 @@ const Register = () => {
 
     const handleRegister = (e) => {
         e.preventDefault()
+
         fetchFunction(
             "http://private-8e8921-woloxfrontendinverview.apiary-mock.com/signup",
             {
@@ -77,15 +76,13 @@ const Register = () => {
         }
     }
 
-    console.log(formState.isValid)
-
     return (
         <>
 
             <div className="Register">
                 <form className="Register--form">
                     <Link to="/home">
-                        <img className="Register--form--logo" src="./assets/logo_full_color.svg"></img>
+                        <img className="Register--form--logo" src="./assets/logo_full_color.svg" alt="logo"></img>
                     </Link>
 
                     <h1 className="Register--form--title">{eng ? "Sign Up" : "Registrarse"}</h1>
@@ -96,6 +93,7 @@ const Register = () => {
                         type="text"
                         validators={[VALIDATOR_REQUIRE()]}
                         onInput={inputHandler}
+                        max={30}
                     />
 
                     <Input
@@ -104,6 +102,7 @@ const Register = () => {
                         type="text"
                         validators={[VALIDATOR_REQUIRE()]}
                         onInput={inputHandler}
+                        max={30}
                     />
                     <Select
                         id="country"
@@ -132,29 +131,8 @@ const Register = () => {
                     />
 
                     <Password
-                        /* id="contraseña"
-                        labelText={eng ? "Password" : "Contraseña"} */
-                        /* validators={[VALIDATOR_PASS(), VALIDATOR_REQUIRE()]}
-                        validators={[VALIDATOR_PASS(), VALIDATOR_REQUIRE()]} */
-                        //pass1={formState.inputs.contraseña.value}
                         onInput={inputHandler}
                     />
-
-
-                    {/*                     <Input
-                        id="password"
-                        labelText={eng ? "Password" : "Contraseña"}
-                        type="text"
-                        validators={[VALIDATOR_PASS(), VALIDATOR_REQUIRE()]}
-                        onInput={inputHandler}
-                    />
-                    <Input
-                        id="repcontraseña"
-                        labelText={eng ? "Repeat Password" : "Repetir Contraseña"}
-                        type="text"
-                        validators={[VALIDATOR_REPEATPASS(formState.inputs.password.value)]}
-                        onInput={inputHandler}
-                    /> */}
                     <div className="buton--check">
                         <Button
                             clicked={handleRegister}
@@ -172,7 +150,7 @@ const Register = () => {
                 </form>
 
                 <div className="Register--image">
-                    <img src="./assets/Img Hero/Ic_ilustra_Hero.png" />
+                    <img src="./assets/Img Hero/Ic_ilustra_Hero.png" alt="img-hero" />
                 </div>
 
             </div>

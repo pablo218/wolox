@@ -11,7 +11,7 @@ const selectReducer = (state, action) => {
 
         case 'CHANGE':
             if (action.label === "PAIS") {
-                const { isValid, errorText } = validate(action.valuePais, action.validators)
+                const { isValid } = validate(action.valuePais, action.validators)
                 return {
                     ...state,
                     valueProv: "",
@@ -22,7 +22,7 @@ const selectReducer = (state, action) => {
                 }
             }
             if (action.label === "PROV") {
-                const { isValid, errorText } = validate(action.valueProv, action.validators)
+                const { isValid } = validate(action.valueProv, action.validators)
                 return {
                     ...state,
                     valueProv: action.valueProv,
@@ -122,7 +122,7 @@ const Selects = ({ id, id2, labelText, errorText, errorText2, validators, onInpu
     let paisSeleccionado;
     let provincias;
 
-    if (selectState.valuePais != "") {
+    if (selectState.valuePais !== "") {
         paisSeleccionado = paisesProv.filter(p => (
             p.pais === selectState.valuePais
         ))

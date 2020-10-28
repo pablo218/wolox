@@ -1,34 +1,34 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { fetchFunction } from '../Utils/fetchFunction'
 
-export const useFetch = (url) => {
+export const useFetch = (url, config) => {
 
-    const [state, setState] = useState("")
-
-    const fetchFunction = async () => {
-
-
-
-        const resp = await fetch(url);
-
-        const respData = await resp.json();
-
-
-        return respData
-    }
+    const isMounted = useRef(true)
+    const [state, setState] = useState({ data: [], loading: true, error: null })
 
 
     useEffect(() => {
+        return () => {
+            isMounted.current = false
+        }
+    }, [])
 
-        fetchFunction().then(resp => {
-            setState(resp)
-        })
+
+    useEffect(() => {
+        fetchFunction(url, config)
+            .then(responseData => {
+                if (isMounted.current) {
+                    setState({ data: responseData, loading: false, error: null })
+                }
+            })
 
     }, [])
 
 
-
-
-    return { state }
+    return state
 }
+
+
+
 
 

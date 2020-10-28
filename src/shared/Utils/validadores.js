@@ -12,6 +12,7 @@ export const VALIDATOR_REPEATPASS = (pass = "") => ({ type: VALIDATOR_TYPE_REPEA
 
 export const validate = (value, validators) => {
 
+
     let isValid = true;
     let errorText = "";
 
@@ -29,7 +30,7 @@ export const validate = (value, validators) => {
             isValid = isValid && /(?=.*[a-z])(?=.*[0-9])[a-z0-9]{6,}/.test(value.toLowerCase());
 
             if (!/(?=.*[a-z])(?=.*[0-9])[a-z0-9]{6,}/.test(value.toLowerCase())) {
-                errorText = "La contraseña no cumple los requerimientos de seguridad"
+                errorText = "La contraseña debe tener al menos 6 caracteres entre numeros y letras"
             }
 
         }

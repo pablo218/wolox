@@ -5,6 +5,11 @@
   font-family: "M-bold";
 
   @media only screen and (max-width: 768px) {
+    padding-top: 40px;
+    padding-bottom: 30px;
+  }
+
+  @media only screen and (max-width: 768px) {
     background-image: url("/assets/Backgrounds/Bg_Header@2x.png");
   }
   @media only screen and (max-width: 600px) {
@@ -61,6 +66,13 @@
       @media only screen and (max-width: 768px) {
         flex-direction: column;
       }
+
+      &--icon {
+        animation-name: latido;
+        animation-duration: 1s;
+        animation-timing-function: ease;
+        animation-iteration-count: infinite;
+      }
     }
   }
 
@@ -111,5 +123,18 @@
       outline: none;
       outline-width: 0;
     }
+  }
+}
+
+@keyframes latido {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
   }
 }
