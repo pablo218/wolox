@@ -9,16 +9,19 @@ const MenuMobile = ({ clicked, visible }) => {
 
     const eng = useContext(Language).english
 
-    const { user: { token } } = useContext(AuthContext)
+
+    const { user } = useContext(AuthContext)
 
     const matchHome = useRouteMatch('/home')
     const matchTechs = useRouteMatch('/techs')
     const matchRegister = useRouteMatch('/register')
 
+
+
     let menu;
     let li;
 
-    if (token) {
+    if (user.logged) {
         li = <Link className="menu__item" to="/techs" onClick={clicked}>Techs</Link>
     } else {
         li = <li onClick={clicked} className="menu__item">
