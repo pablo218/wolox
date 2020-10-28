@@ -1,0 +1,15 @@
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  background-color: rgba(42, 167, 223, 0.7);
+  height: 100vh;
+  width: 100vw;
+  color: white;
+  font-size: 40px;
+  font-family: "M-bold";
+}

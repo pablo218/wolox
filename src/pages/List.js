@@ -119,6 +119,7 @@ const List = () => {
                         className="List__searchBox"
                         value={value}
                         onChange={onChangeHandler}
+                        placeholder={eng ? "Search by tech or type" : "Buscar por nombre o tipo"}
                     />
                     <div className="List__header--filters">
                         <div>
