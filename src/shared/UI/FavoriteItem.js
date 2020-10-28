@@ -12,7 +12,7 @@ const FavoriteItem = () => {
     let item;
 
 
-    if (favorites.length > 0 && user.logged) {
+    if (favorites?.length > 0 && user.logged) {
         item = <li>
             <p className="favoriteItem"><FavoriteIcon className="heart" style={{ fontSize: "30px", color: "#a3cc39", marginLeft: "15px" }} />
                 <span className="favoriteItem--text">Techs:</span> {favorites.length}</p>
