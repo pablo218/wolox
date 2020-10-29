@@ -20,7 +20,7 @@ const Header = () => {
             <div className="Header__right">
 
                 <div className="Header__right--image-container">
-                    <img className="Header__right--image" src="./assets/Img Hero/Ic_ilustra_Hero@2x.png" />
+                    <img className="Header__right--image" src="./assets/Img Hero/Ic_ilustra_Hero@2x.png" alt="wolox" />
 
                 </div>
             </div>

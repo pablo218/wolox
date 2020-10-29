@@ -25,10 +25,13 @@
 
   &:disabled {
     cursor: not-allowed;
+    color: #cccccc;
+    border: 1px solid #cccccc;
 
     &:hover {
       background-color: white;
-      color: $blue-color;
+      color: #cccccc;
+      border: 1px solid #cccccc;
     }
   }
 }

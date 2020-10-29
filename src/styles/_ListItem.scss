@@ -2,9 +2,11 @@
   background-color: white;
   margin: 20px 10px;
   width: 290px;
-  height: 300px;
-  border: 1px solid $green-color;
+  height: fit-content;
+  /* border: 1px solid $green-color; */
+  border: 1px solid #cccccc;
   border-radius: 10px;
+  overflow: hidden;
 
   &__logo {
     margin: 0 auto;
@@ -26,13 +28,13 @@
     font-size: 13px;
     display: flex;
     flex-direction: column;
-    border-bottom: 1px solid $green-color;
-    border-top: 1px solid $green-color;
+    border-bottom: 1px solid #cccccc;
+    border-top: 1px solid #cccccc;
   }
 
   &__fav {
     height: fit-content;
-    padding-top: 10px;
+    padding: 15px 0;
     width: 100%;
     text-align: center;
   }
