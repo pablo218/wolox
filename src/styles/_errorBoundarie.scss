@@ -1,0 +1,16 @@
+.errorBoundarie {
+  font-family: "M-bold";
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+  padding: 40px 0;
+
+  &--image {
+    width: 300px;
+  }
+  &--text {
+    font-size: 40px;
+  }
+}

@@ -10,6 +10,7 @@ import NavBar from '../shared/UI/NavBar';
 import MenuButton from '../shared/UI/Mobile/MenuButton';
 import EnglishEspañolButton from '../shared/UI/EnglishEspañolButton';
 import Spinner from "../shared/UI/Spinner/Spinner"
+import ErrorBoundarie from '../ErrorBoundaries/ErrorBoundarie'
 
 const LandingPage = React.lazy(() => import('../pages/LandingPage'));
 const Register = React.lazy(() => import('../pages/Register'));
@@ -25,10 +26,15 @@ const AppRouter = () => {
     if (user.logged) {
         routes = (
             <Switch>
-                <Route path="/techs" render={() => (<Suspense fallback={<Spinner />}><List /></Suspense>)} />
+                <Route path="/techs" render={() =>
+                    (<Suspense fallback={<Spinner />}>
+                        <ErrorBoundarie>
+                            <List />
+                        </ErrorBoundarie>
+                    </Suspense>)} />
                 <Route path="/home" render={() => (<Suspense fallback={<Spinner />}><LandingPage /></Suspense>)} />
                 <Redirect to="/techs" />
-            </Switch>
+            </Switch >
         )
     }
     else {
@@ -40,8 +46,6 @@ const AppRouter = () => {
             </Switch>
         )
     }
-
-
 
     return (
         <Router>

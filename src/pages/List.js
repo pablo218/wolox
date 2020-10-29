@@ -32,7 +32,6 @@ const List = () => {
         try {
             sendRequest("http://private-8e8921-woloxfrontendinverview.apiary-mock.com/techs")
                 .then(response => {
-                    console.log("REQUEST!!")
                     setListado(response)
                 })
         }
@@ -156,7 +155,9 @@ const List = () => {
                 </div>
 
                 {isLoading ? <Spinner /> :
+
                     <div className="List__techs">
+
                         {listadoFiltrado.map(tech => {
                             return <ListItem year={tech.year}
                                 author={tech.author}
@@ -170,12 +171,15 @@ const List = () => {
                                 nofavoriteClick={(tech) => nofavoriteClick(tech)}
                             />
                         })}
+
                     </div>
+
                 }
 
 
                 <p className="List__footer">{eng ? "Listed technologies:" : "Tecnologías listadas:"} {listadoFiltrado.length}</p>
             </div>
+
         </>
     )
 }
