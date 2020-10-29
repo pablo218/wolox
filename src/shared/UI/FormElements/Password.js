@@ -1,8 +1,9 @@
-import React, { useContext, useEffect, useReducer } from 'react'
-import { validate } from '../../Utils/validadores'
-import { VALIDATOR_REQUIRE, VALIDATOR_PASS, VALIDATOR_REPEATPASS } from '../../Utils/validadores'
+import React, { useContext, useEffect, useReducer } from 'react';
+import PropTypes from 'prop-types'
 
-import { Language } from '../../Contexts/LanguageContext'
+import { validate } from '../../Utils/validadores';
+import { VALIDATOR_REQUIRE, VALIDATOR_PASS } from '../../Utils/validadores';
+import { Language } from '../../Contexts/LanguageContext';
 
 const inputReducer = (state, action) => {
 
@@ -62,7 +63,7 @@ const inputReducer = (state, action) => {
 }
 
 
-const Inputs = ({ onInput }) => {
+const Password = ({ onInput }) => {
 
     const eng = useContext(Language).english
 
@@ -165,7 +166,11 @@ const Inputs = ({ onInput }) => {
     )
 }
 
-export default Inputs
+
+Password.propTypes = {
+    onInput: PropTypes.func.isRequired,
+}
+
+export default Password
 
 
-//${!inputState.isValid && inputState.isTouched && "Register__group--input--error"}

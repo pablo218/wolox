@@ -1,8 +1,9 @@
-import React, { useEffect, useContext, useReducer } from 'react'
+import React, { useEffect, useContext, useReducer } from 'react';
+import PropTypes from 'prop-types'
 
-import { validate } from '../../Utils/validadores'
-import { Language } from '../../Contexts/LanguageContext'
-import { paisesProv } from '../../Utils/PaisesProvincias'
+import { validate } from '../../Utils/validadores';
+import { Language } from '../../Contexts/LanguageContext';
+import { paisesProv } from '../../Utils/PaisesProvincias';
 
 
 const selectReducer = (state, action) => {
@@ -172,6 +173,13 @@ const Selects = ({ id, id2, labelText, errorText, errorText2, validators, onInpu
 
         </>
     )
+}
+
+Selects.propTypes = {
+    id: PropTypes.string.isRequired,
+    id2: PropTypes.string.isRequired,
+    labelText: PropTypes.string.isRequired,
+    onInput: PropTypes.func.isRequired
 }
 
 export default Selects

@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
+
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
@@ -34,7 +36,7 @@ const ListItem = ({ year, author, license, languaje, type, logo, tech, favoriteC
     return (
         <div className="ListItem" key={tech}>
             <div className="ListItem__logo">
-                <img src={logo} />
+                <img src={logo} alt={tech} />
             </div>
 
             <div className="ListItem__info">
@@ -56,6 +58,18 @@ const ListItem = ({ year, author, license, languaje, type, logo, tech, favoriteC
             </div>
         </div>
     )
+}
+
+ListItem.propTypes = {
+    year: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    license: PropTypes.string.isRequired,
+    languaje: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    logo: PropTypes.string.isRequired,
+    tech: PropTypes.string.isRequired,
+    favoriteClick: PropTypes.func.isRequired,
+    nofavoriteClick: PropTypes.func.isRequired
 }
 
 export default ListItem

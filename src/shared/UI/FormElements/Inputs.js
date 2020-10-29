@@ -1,5 +1,7 @@
-import React, { useEffect, useReducer } from 'react'
-import { validate } from '../../Utils/validadores'
+import React, { useEffect, useReducer } from 'react';
+import PropTypes from 'prop-types';
+
+import { validate } from '../../Utils/validadores';
 
 const inputReducer = (state, action) => {
 
@@ -79,6 +81,14 @@ const Inputs = ({ id, labelText, type, max, validators, onInput }) => {
 
         </div>
     )
+}
+
+Inputs.propTypes = {
+    id: PropTypes.string.isRequired,
+    labelText: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    onInput: PropTypes.func.isRequired,
+    max: PropTypes.number
 }
 
 export default Inputs
