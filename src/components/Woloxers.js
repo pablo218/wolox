@@ -29,7 +29,7 @@ const Woloxers = () => {
                     </div>
                     <div className="Woloxers__left__text--line3">
                         <a href="https://twitter.com/Wolox"
-                            target="_blank">
+                            target="_blank" rel="noopener noreferrer">
                             <Button clases="bg-transparent">
                                 {t("landing.woloxers")}
                             </Button>

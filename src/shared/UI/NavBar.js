@@ -21,7 +21,7 @@ const NavBar = () => {
         navbar =
             <nav className="nav" >
                 <Link to="/home">
-                    <img className="nav--logo" src="./assets/logo_full_color.svg" />
+                    <img className="nav--logo" src="./assets/logo_full_color.svg" alt="logo" />
                 </Link>
                 <ul className="nav--list">
                     <Scroll className="nav--item"
@@ -56,7 +56,7 @@ const NavBar = () => {
         navbar =
             <nav className="nav">
                 <Link to="/home">
-                    <img className="nav--logo" src="./assets/logo_full_color.svg" />
+                    <img className="nav--logo" src="./assets/logo_full_color.svg" alt="logo" />
                 </Link>
             </nav>
     }

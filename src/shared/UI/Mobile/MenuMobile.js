@@ -56,7 +56,7 @@ const MenuMobile = ({ clicked, visible }) => {
                 <li><img className="menu_mobile--imagen menu__item" src="./assets/Ic_Wolox_Footer.svg" alt="logo" /></li>
                 <Link to="/home">
 
-                    <li onClick={clicked} className="menu__item" onClick={clicked}>
+                    <li onClick={clicked} className="menu__item" >
                         {t("nav.home")}
                     </li>
                 </Link>
@@ -68,9 +68,9 @@ const MenuMobile = ({ clicked, visible }) => {
     else if (matchRegister) {
         menu =
             <ul className={`menu ${visible && "menu-visible"}`}>
-                <li><img className="menu_mobile--imagen menu__item" src="./assets/Ic_Wolox_Footer.svg" /></li>
+                <li><img className="menu_mobile--imagen menu__item" src="./assets/Ic_Wolox_Footer.svg" alt="logo" /></li>
                 <Link to="/home">
-                    <li onClick={clicked} className="menu__item" onClick={clicked}>
+                    <li onClick={clicked} className="menu__item" >
                         {t("nav.home")}
                     </li>
                 </Link>

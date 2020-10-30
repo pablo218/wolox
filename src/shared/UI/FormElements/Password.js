@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types'
 
 import { validate } from '../../Utils/validadores';
@@ -14,7 +14,7 @@ const inputReducer = (state, action) => {
 
             let isvalidRep;
 
-            if (action.val != "" && action.val2 != "") {
+            if (action.val !== "" && action.val2 !== "") {
                 isvalidRep = action.val === action.val2
             }
             return {

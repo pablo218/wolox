@@ -21,7 +21,7 @@ const Footer = () => {
                     {t("landing.footer-3")}
                 </p>
                 <div className="Footer__line--3">
-                    <a href="https://www.wolox.com.ar/" target="_blank">
+                    <a href="https://www.wolox.com.ar/" target="_blank" rel="noopener noreferrer">
                         <Button clases="bg-blue">
                             {t("landing.footer-4")}
                         </Button>
