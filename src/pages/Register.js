@@ -19,7 +19,8 @@ import {
 } from '../shared/Utils/validadores';
 import Spinner from '../shared/UI/Spinner/Spinner';
 import { useFetch } from '../shared/hooks/fetch-hook';
-import ErrorModal from '../shared/UI/ErrorModal'
+import ErrorModal from '../shared/UI/ErrorModal';
+import BackDrop from '../shared/UI/BackDrop'
 
 const Register = () => {
 
@@ -86,6 +87,7 @@ const Register = () => {
         <>
             {isLoading && <Spinner />}
             {error && <ErrorModal errortext={error} clicked={okHandler} />}
+            {error && <BackDrop />}
             <div className="Register">
                 <form className="Register--form">
                     <Link to="/home">

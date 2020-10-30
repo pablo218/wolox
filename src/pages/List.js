@@ -10,7 +10,7 @@ import Spinner from '../shared/UI/Spinner/Spinner'
 import ListItem from '../components/ListItem';
 import { useFetch } from '../shared/hooks/fetch-hook'
 import ErrorModal from '../shared/UI/ErrorModal'
-
+import BackDrop from '../shared/UI/BackDrop'
 
 const List = () => {
 
@@ -114,7 +114,7 @@ const List = () => {
     return (
         <>
             {error && <ErrorModal errortext={error} clicked={okHandler} />}
-
+            {error && <BackDrop />}
             <div className="List">
                 <div className="List__header">
                     <div className="List__header--search">
