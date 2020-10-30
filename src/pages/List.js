@@ -87,9 +87,16 @@ const List = () => {
         setOrderZ(x => !x)
     }
 
+
     /*****favoritos*****/
 
-    let favoritos = JSON.parse(localStorage.getItem("tech"))
+    let favoritos = []
+
+    if (localStorage.getItem("tech")) {
+        favoritos = JSON.parse(localStorage.getItem("tech"))
+    }
+
+
 
     const favoriteClick = (tech) => {
 

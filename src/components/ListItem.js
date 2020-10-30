@@ -10,12 +10,14 @@ const ListItem = ({ year, author, license, languaje, type, logo, tech, favoriteC
     const [isfavorite, setIsFavorite] = useState(false)
 
     useEffect(() => {
-        let favorites = JSON.parse(localStorage.getItem("tech"))
-        favorites.forEach(element => {
-            if (element === tech) {
-                setIsFavorite(true)
-            }
-        });
+        if (localStorage.getItem("tech")) {
+            let favorites = JSON.parse(localStorage.getItem("tech"))
+            favorites.forEach(element => {
+                if (element === tech) {
+                    setIsFavorite(true)
+                }
+            });
+        }
 
     }, [isfavorite])
 
