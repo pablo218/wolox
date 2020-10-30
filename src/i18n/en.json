@@ -3,14 +3,15 @@
 
     "nav.home": "Home",
     "nav.benefits": "Benefits",
-    "nav.reg": "Register",
+    "nav.reg": "Signup",
 
     "landing.header-1":"Welcome to your ",
-    "landing.header-2":"Technical Interview in ",
+    "landing.header-2":"Technical Interview ",
+    "landing.header-3":"in",
 
     "landing.woloxers-1": "We Work to ",
     "landing.woloxers-2":  "turn ",
-    "landing.woloxers-3":  "products",
+    "landing.woloxers-3":  "products.",
     "landing.woloxers-4":  " in to",
     "landing.woloxers":  "Follow us",
 

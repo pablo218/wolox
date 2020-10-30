@@ -3,17 +3,18 @@
 
     "nav.home": "Inicio",
     "nav.benefits": "Beneficios",
-    "nav.reg": "Registrarse",
+    "nav.reg": "Signup",
 
 
     "landing.header-1":"Bienvenido a tu",
-    "landing.header-2":"Entrevista Técnica en",
+    "landing.header-2":"Entrevista Técnica ",
+    "landing.header-3":"en",
 
     "landing.woloxers-1": "Trabajamos para",
     "landing.woloxers-2":  "convertir ",
-    "landing.woloxers-3":  "productos",
+    "landing.woloxers-3":  "productos.",
     "landing.woloxers-4":  " en",
-    "landing.woloxers":  "Síguenos",
+    "landing.woloxers":  "Siguenos",
 
     "landing.benefits": "Entre los beneficios que ofrecemos se encuentran ;)",    
     "landing.flex":"Flexibilidad ",

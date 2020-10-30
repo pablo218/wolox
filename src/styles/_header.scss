@@ -49,6 +49,14 @@
     &__text {
       font-size: 5rem;
 
+      &--2 {
+        font-family: "M-semibold";
+
+        &-b {
+          font-family: "M-regular";
+        }
+      }
+
       &--3 {
         font-family: "M-bold";
         color: $green-color;

@@ -1,11 +1,6 @@
-@font-face {
-  font-family: "MiFuente-header-nav";
-  src: url("/assets/Fonts/Montserrat/Montserrat-SemiBold.ttf");
-}
-
 .btn {
-  font-family: "MiFuente-header-nav";
-  font-size: 1.7rem;
+  font-family: "M-bold";
+  font-size: 2rem; //1.7
   cursor: pointer;
   outline: none;
   font-weight: 700;
@@ -40,12 +35,14 @@
   border: 2px solid $blue-color;
   background-color: transparent;
   color: white;
+  padding: 1.6rem 10rem;
+  font-family: "M-semibold";
 }
 
 .bg-blue {
   background-color: $blue-color;
   color: white;
-  padding: 1.1rem 5rem;
+  padding: 1.6rem 8rem;
   transition: background-color 0.2s;
 
   &:hover {

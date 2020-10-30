@@ -13,9 +13,11 @@ const Header = () => {
                     <p className="Header__left__text Header__left__text--1">
                         {t("landing.header-1")}
                     </p>
-                    <p className="Header__left__text Header__left__text--2"><span style={{ fontWeight: "700" }}>
-                        {t("landing.header-2")}
-                    </span>
+                    <p className="Header__left__text Header__left__text--2">
+                        <span>
+                            {t("landing.header-2")}
+                        </span>
+                        <span className="Header__left__text--2-b">{t("landing.header-3")}</span>
                     </p>
                     <p className="Header__left__text Header__left__text--3">Wolox</p>
                 </div>
