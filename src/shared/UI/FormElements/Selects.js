@@ -1,8 +1,7 @@
-import React, { useEffect, useContext, useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types'
 
 import { validate } from '../../Utils/validadores';
-import { Language } from '../../Contexts/LanguageContext';
 import { paisesProv } from '../../Utils/PaisesProvincias';
 
 
@@ -53,7 +52,7 @@ const selectReducer = (state, action) => {
 
 
 
-const Selects = ({ id, id2, labelText, errorText, errorText2, validators, onInput }) => {
+const Selects = ({ id, id2, labelText, labelText2, errorText, errorText2, validators, onInput }) => {
 
     const [selectState, dispatch] = useReducer(selectReducer, {
         valuePais: "",
@@ -79,9 +78,6 @@ const Selects = ({ id, id2, labelText, errorText, errorText2, validators, onInpu
         onInput(id2, valueProv, provIsValid)
 
     }, [id2, valueProv, provIsValid, onInput])
-
-
-    const eng = useContext(Language).english
 
 
     const blurHandlerPais = () => {
@@ -157,7 +153,7 @@ const Selects = ({ id, id2, labelText, errorText, errorText2, validators, onInpu
             </div>
 
             <div className="Register__group">
-                <label htmlFor={id2} className="Register__group--label">{eng ? "Province" : "Provincia"}</label>
+                <label htmlFor={id2} className="Register__group--label">{labelText2}</label>
                 {!selectState.provIsValid && selectState.provIsTouched &&
                     <label htmlFor="provincia" className="Register__group--error"><span>{errorText2}</span></label>
                 }

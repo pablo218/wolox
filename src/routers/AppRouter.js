@@ -8,7 +8,6 @@ import {
 import { AuthContext } from '../auth/AuthContext';
 import NavBar from '../shared/UI/NavBar';
 import MenuButton from '../shared/UI/Mobile/MenuButton';
-import EnglishEspañolButton from '../shared/UI/EnglishEspañolButton';
 import Spinner from "../shared/UI/Spinner/Spinner"
 import ErrorBoundarie from '../ErrorBoundaries/ErrorBoundarie'
 
@@ -52,7 +51,6 @@ const AppRouter = () => {
             <div>
                 <NavBar />
                 <MenuButton />
-                <EnglishEspañolButton />
                 {routes}
             </div>
         </Router>

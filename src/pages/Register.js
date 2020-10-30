@@ -2,8 +2,8 @@ import React, { useContext, useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import { useTranslation } from 'react-i18next'
 
-import { Language } from '../shared/Contexts/LanguageContext';
 import { AuthContext } from '../auth/AuthContext';
 import { types } from '../types/types';
 import Button from '../shared/UI/Button';
@@ -25,19 +25,18 @@ const Register = () => {
 
     const { isLoading, error, sendRequest, clearError } = useFetch();
 
-    const [formState, inputHandler] = useForm(registerInputs, false)
+    const [formState, inputHandler] = useForm(registerInputs, false);
 
-    const [aceptTerms, setAceptTerms] = useState(false)
+    const [aceptTerms, setAceptTerms] = useState(false);
 
-    const eng = useContext(Language).english
+    const { t } = useTranslation();
 
-    const { dispatchUser } = useContext(AuthContext)
+    const { dispatchUser } = useContext(AuthContext);
 
-    const history = useHistory()
+    const history = useHistory();
 
     const handleRegister = async (e) => {
-        e.preventDefault()
-
+        e.preventDefault();
 
         await sendRequest(
             "http://private-8e8921-woloxfrontendinverview.apiary-mock.com/signup",
@@ -93,11 +92,13 @@ const Register = () => {
                         <img className="Register--form--logo" src="./assets/logo_full_color.svg" alt="logo"></img>
                     </Link>
 
-                    <h1 className="Register--form--title">{eng ? "Sign Up" : "Registrarse"}</h1>
+                    <h1 className="Register--form--title">
+                        {t("register.title")}
+                    </h1>
 
                     <Input
                         id="name"
-                        labelText={eng ? "Name" : "Nombre"}
+                        labelText={t("register.name")}
                         type="text"
                         validators={[VALIDATOR_REQUIRE()]}
                         onInput={inputHandler}
@@ -106,7 +107,7 @@ const Register = () => {
 
                     <Input
                         id="last_name"
-                        labelText={eng ? "Surname" : "Apellido"}
+                        labelText={t("register.surname")}
                         type="text"
                         validators={[VALIDATOR_REQUIRE()]}
                         onInput={inputHandler}
@@ -115,9 +116,10 @@ const Register = () => {
                     <Select
                         id="country"
                         id2="province"
-                        labelText={eng ? "Country" : "País"}
-                        errorText={eng ? "Country is required" : "Campo Obligaotrio"}
-                        errorText2={eng ? "State is required" : "Campo Obligaotrio"}
+                        labelText={t("register.country")}
+                        labelText2={t("register.prov")}
+                        errorText="Campo Obligaotrio"
+                        errorText2="Campo Obligaotrio"
                         validators={[VALIDATOR_REQUIRE()]}
                         onInput={inputHandler}
                     />
@@ -132,7 +134,7 @@ const Register = () => {
 
                     <Input
                         id="phone"
-                        labelText={eng ? "Phone" : "Teléfono"}
+                        labelText={t("register.phone")}
                         type="text"
                         validators={[VALIDATOR_REQUIRE(), VALIDATOR_PHONE()]}
                         onInput={inputHandler}
@@ -140,18 +142,22 @@ const Register = () => {
 
                     <Password
                         onInput={inputHandler}
+                        labelText={t("register.pass")}
+                        labelText2={t("register.rep")}
                     />
                     <div className="buton--check">
                         <Button
                             clicked={handleRegister}
                             disabled={!formAcepted}
-                        >{eng ? "SEND" : "ENVIAR"}</Button>
+                        >
+                            {t("register.send")}
+                        </Button>
                         <div className="buton--check--terms">
                             {aceptTerms ?
                                 <CheckBoxIcon style={{ color: "#a3cc39", fontSize: "30px" }} onClick={termsHandler} /> :
                                 <CheckBoxOutlineBlankIcon style={{ color: "#a3cc39", fontSize: "30px" }} onClick={termsHandler} />
                             }
-                            <p>Acepto terminos y condiciones</p>
+                            <p>{t("register.terms")}</p>
                         </div>
 
                     </div>

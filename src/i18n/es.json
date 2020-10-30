@@ -1,0 +1,58 @@
+{
+    "setlang.button": "English?",
+
+    "nav.home": "Inicio",
+    "nav.benefits": "Beneficios",
+    "nav.reg": "Registrarse",
+
+
+    "landing.header-1":"Bienvenido a tu",
+    "landing.header-2":"Entrevista Técnica en",
+
+    "landing.woloxers-1": "Trabajamos para",
+    "landing.woloxers-2":  "convertir ",
+    "landing.woloxers-3":  "productos",
+    "landing.woloxers-4":  " en",
+    "landing.woloxers":  "Síguenos",
+
+    "landing.benefits": "Entre los beneficios que ofrecemos se encuentran ;)",    
+    "landing.flex":"Flexibilidad ",
+    "landing.flex2":"Horaria",
+    "landing.train": "Capacitaciones ",
+    "landing.train2": "& Workshops",
+    "landing.fruits": "frutas ",
+    "landing.fruits2": "y bebidas gratis",
+    "landing.remotew":"Semana",
+    "landing.remotew2":"Remota",
+    "landing.latTechs": "Trabajar",
+    "landing.latTechs2":"en últimas",
+    "landing.latTechs3":"tecnologías",
+
+
+    "landing.footer-1":"Gracias por ",
+    "landing.footer-2":"completar el ejercicio ",
+    "landing.footer-3":"Te invitamos a ver mas información ",
+    "landing.footer-4":"Conocer más",
+    
+    "register.title":"Registrarse",
+    "register.name":"Nombre",
+    "register.surname":"Apellido",
+    "register.country":"País",
+    "register.prov":"Provincia",
+    "register.phone":"Teléfono",
+    "register.send":"Enviar",
+    "register.terms":"Acepto términos y condiciones",    
+    "register.pass":"Contraseña",
+    "register.rep":"Repetir contraseña",
+
+
+    "list.placeholder": "Buscar por nombre o tipo",
+    "list.footer": "Tecnologías listadas:"
+    
+
+    
+    
+
+
+
+}

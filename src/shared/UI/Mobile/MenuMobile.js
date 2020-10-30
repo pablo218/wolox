@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
 import { Link as Scroll } from 'react-scroll';
 import { Link, useRouteMatch } from 'react-router-dom';
+import { useTranslation } from 'react-i18next'
+
 import { AuthContext } from '../../../auth/AuthContext';
-import { Language } from '../../Contexts/LanguageContext'
 import FavoriteItem from '../FavoriteItem'
 
 const MenuMobile = ({ clicked, visible }) => {
 
-    const eng = useContext(Language).english
-
+    const { t } = useTranslation()
 
     const { user } = useContext(AuthContext)
 
@@ -26,7 +26,7 @@ const MenuMobile = ({ clicked, visible }) => {
     } else {
         li = <li onClick={clicked} className="menu__item">
             <Link to="/register">
-                {eng ? "Register" : "Registrarse"}
+                {t("nav.reg")}
             </Link>
         </li >
     }
@@ -34,15 +34,15 @@ const MenuMobile = ({ clicked, visible }) => {
     if (matchHome) {
         menu =
             <ul className={`menu ${visible && "menu-visible"}`}>
-                <li><img className="menu_mobile--imagen menu__item" src="./assets/Ic_Wolox_Footer.svg" /></li>
+                <li><img className="menu_mobile--imagen menu__item" src="./assets/Ic_Wolox_Footer.svg" alt="logo" /></li>
                 <li onClick={clicked} className="menu__item">
                     <Scroll to="inicio" smooth={true} duration={1000} onClick={clicked}>
-                        {eng ? "Home" : "Inicio"}
+                        {t("nav.home")}
                     </Scroll>
                 </li>
                 <li onClick={clicked} className="menu__item">
                     <Scroll to="beneficios" smooth={true} duration={1000} onClick={clicked}>
-                        {eng ? "Benefits" : "Beneficios"}
+                        {t("nav.benefits")}
                     </Scroll>
                 </li>
                 {li}
@@ -53,11 +53,11 @@ const MenuMobile = ({ clicked, visible }) => {
     else if (matchTechs) {
         menu =
             <ul className={`menu ${visible && "menu-visible"}`}>
-                <li><img className="menu_mobile--imagen menu__item" src="./assets/Ic_Wolox_Footer.svg" /></li>
+                <li><img className="menu_mobile--imagen menu__item" src="./assets/Ic_Wolox_Footer.svg" alt="logo" /></li>
                 <Link to="/home">
 
                     <li onClick={clicked} className="menu__item" onClick={clicked}>
-                        {eng ? "Home" : "Inicio"}
+                        {t("nav.home")}
                     </li>
                 </Link>
 
@@ -71,7 +71,7 @@ const MenuMobile = ({ clicked, visible }) => {
                 <li><img className="menu_mobile--imagen menu__item" src="./assets/Ic_Wolox_Footer.svg" /></li>
                 <Link to="/home">
                     <li onClick={clicked} className="menu__item" onClick={clicked}>
-                        {eng ? "Home" : "Inicio"}
+                        {t("nav.home")}
                     </li>
                 </Link>
             </ul>

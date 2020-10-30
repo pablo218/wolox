@@ -1,15 +1,15 @@
 import React, { useContext } from "react";
 import { Link as Scroll } from 'react-scroll';
 import { Link, useRouteMatch } from 'react-router-dom';
+import { useTranslation } from 'react-i18next'
 
 import Button from './Button'
 import FavoriteItem from './FavoriteItem'
-import { Language } from '../Contexts/LanguageContext'
 import { AuthContext } from '../../auth/AuthContext'
 
 const NavBar = () => {
 
-    const eng = useContext(Language).english
+    const { t } = useTranslation()
     const { user } = useContext(AuthContext)
 
     const matchHome = useRouteMatch('/home')
@@ -28,20 +28,23 @@ const NavBar = () => {
                         to="inicio"
                         smooth={true}
                         duration={1000}>
-                        {eng ? "Home" : "Inicio"}</Scroll>
+                        {t("nav.home")}
+                    </Scroll>
 
 
                     <Scroll to="beneficios"
                         className="nav--item"
                         smooth={true}
                         duration={1000}>
-                        {eng ? "Benefits" : "Beneficios"}
+                        {t("nav.benefits")}
                     </Scroll>
 
                     {user.logged ?
                         <Link to="/techs"><li className="nav--item">Techs</li></Link> :
                         <Link className="nav--item" to="/register">
-                            <Button>{eng ? "Register" : "Registrarse"}</Button>
+                            <Button>
+                                {t("nav.reg")}
+                            </Button>
                         </Link>
                     }
                     <FavoriteItem />

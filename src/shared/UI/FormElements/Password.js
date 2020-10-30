@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 
 import { validate } from '../../Utils/validadores';
 import { VALIDATOR_REQUIRE, VALIDATOR_PASS } from '../../Utils/validadores';
-import { Language } from '../../Contexts/LanguageContext';
 
 const inputReducer = (state, action) => {
 
@@ -63,9 +62,8 @@ const inputReducer = (state, action) => {
 }
 
 
-const Password = ({ onInput }) => {
+const Password = ({ labelText, labelText2, onInput }) => {
 
-    const eng = useContext(Language).english
 
     const [inputState, dispatch] = useReducer(inputReducer, {
         value: "", value2: "",
@@ -122,7 +120,7 @@ const Password = ({ onInput }) => {
         <>
             <div className="Register__group">
                 <label htmlFor="contraseña" className="Register__group--label">
-                    {eng ? "Password" : "Contraseña"}
+                    {labelText}
                 </label>
                 {!inputState.isValid && inputState.isTouched &&
                     <label htmlFor="contraseña" className="Register__group--error">
@@ -143,7 +141,7 @@ const Password = ({ onInput }) => {
 
             <div className="Register__group">
                 <label htmlFor="repcontraseña" className="Register__group--label">
-                    {eng ? "Repeat password" : "Repetir contraseña"}
+                    {labelText2}
                 </label>
                 {!inputState.isValid2 && inputState.isTouched2 &&
                     <label htmlFor="repcontraseña" className="Register__group--error">

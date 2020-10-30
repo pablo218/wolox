@@ -1,0 +1,54 @@
+{
+    "setlang.button": "Español?",
+
+    "nav.home": "Home",
+    "nav.benefits": "Benefits",
+    "nav.reg": "Register",
+
+    "landing.header-1":"Welcome to your ",
+    "landing.header-2":"Technical Interview in ",
+
+    "landing.woloxers-1": "We Work to ",
+    "landing.woloxers-2":  "turn ",
+    "landing.woloxers-3":  "products",
+    "landing.woloxers-4":  " in to",
+    "landing.woloxers":  "Follow us",
+
+    "landing.benefits": "Among the benefits we offer are ;)",
+    "landing.flex":"Flexibility",
+    "landing.flex2":" Time",
+    "landing.train": "Training",
+    "landing.train2": " & Workshops",
+    "landing.fruits": "fruits ",
+    "landing.fruits2": "& free drinks",
+    "landing.remotew":"Remote",
+    "landing.remotew2":" Week",
+    "landing.latTechs": "Working on ",
+    "landing.latTechs2":"latest ",
+    "landing.latTechs3":"technologies",
+
+
+    "landing.footer-1":"Thanks for ",
+    "landing.footer-2":"completing the exercise",
+    "landing.footer-3":"We invite you to see more information",
+    "landing.footer-4":"Learn more",
+
+    "register.title":"Register",
+    "register.name":"Name",
+    "register.surname":"Surname",
+    "register.country":"Country",
+    "register.prov":"Province",
+    "register.phone":"Phone",
+    "register.send":"Send",
+    "register.terms":"I accept terms and conditions",
+    "register.pass":"Password",
+    "register.rep":"Repeat password",
+
+
+    "list.placeholder": "Search by tech or type",
+    "list.footer": "Listed technologies:"
+    
+    
+    
+
+}

@@ -1,16 +1,13 @@
-import React, { useContext } from 'react'
-import { Language } from '../Contexts/LanguageContext'
+import React from 'react';
+import { useTranslation } from 'react-i18next';
 
-const EnglishEspañolButton = () => {
+const EnglishEspañolButton = ({ setLang }) => {
 
-    const setLang = useContext(Language).setLang
-    const eng = useContext(Language).english
-
-
+    const { t } = useTranslation()
 
     return (
         <div className="btn__english" onClick={setLang}>
-            {eng ? "Español?" : "English?"}
+            {t("setlang.button")}
         </div >
     )
 }

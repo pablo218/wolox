@@ -1,12 +1,14 @@
 import React, { useState, useReducer, useEffect } from "react";
 
 import AppRouter from './routers/AppRouter'
-import { Language } from './shared/Contexts/LanguageContext'
 import { AuthContext } from './auth/AuthContext'
 import { authReducer } from "./auth/authReducer";
+import EnglishEspañolButton from './shared/UI/EnglishEspañolButton'
 
+import './i18n/index'
 
 import "./styles/main.scss";
+import i18n from "./i18n/index";
 
 
 const init = () => {
@@ -22,20 +24,23 @@ export default function App() {
     localStorage.setItem('user', JSON.stringify(user))
   }, [user])
 
+  const [language, setLanguage] = useState("es")
 
-  const [english, setLanguage] = useState(false);
-  const setLang = () => {
-    setLanguage((eng) => !eng);
-  };
+  const changeLangHandler = () => {
+    if (language === "es") {
+      setLanguage("en")
+    }
+    else {
+      setLanguage("es")
+    }
+    i18n.changeLanguage(language)
+  }
 
 
   return (
     <AuthContext.Provider value={{ user, dispatchUser }}>
-
-      <Language.Provider value={{ english: english, setLang }}>
-        <AppRouter />
-      </Language.Provider>
-
+      <EnglishEspañolButton setLang={changeLangHandler} />
+      <AppRouter />
     </AuthContext.Provider>
   );
 }

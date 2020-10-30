@@ -1,18 +1,22 @@
 import React, { useContext } from "react";
-
-import { Language } from "../shared/Contexts/LanguageContext";
+import { useTranslation } from 'react-i18next'
 
 
 const Header = () => {
 
-    const eng = useContext(Language).english
+    const { t } = useTranslation()
 
     return (
         <header className="Header" id="header">
             <div className="Header__left">
                 <div className="Header__left__text--container">
-                    <p className="Header__left__text Header__left__text--1">{eng ? "Welcome to your" : "Bienvenido a tu"}</p>
-                    <p className="Header__left__text Header__left__text--2"><span style={{ fontWeight: "700" }}>{eng ? "Technical Interview" : "Entrevista Técnica"}</span> {eng ? "in" : "en"}</p>
+                    <p className="Header__left__text Header__left__text--1">
+                        {t("landing.header-1")}
+                    </p>
+                    <p className="Header__left__text Header__left__text--2"><span style={{ fontWeight: "700" }}>
+                        {t("landing.header-2")}
+                    </span>
+                    </p>
                     <p className="Header__left__text Header__left__text--3">Wolox</p>
                 </div>
             </div>

@@ -4,17 +4,17 @@ import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import { useTranslation } from 'react-i18next'
 
 import Spinner from '../shared/UI/Spinner/Spinner'
 import ListItem from '../components/ListItem';
-import { Language } from '../shared/Contexts/LanguageContext';
 import { useFetch } from '../shared/hooks/fetch-hook'
 import ErrorModal from '../shared/UI/ErrorModal'
 
 
 const List = () => {
 
-    const eng = useContext(Language).english
+    const { t } = useTranslation()
 
     const [listado, setListado] = useState([])
     const [favState, setfavState] = useState([])
@@ -129,7 +129,7 @@ const List = () => {
                             className="List__searchBox"
                             value={value}
                             onChange={onChangeHandler}
-                            placeholder={eng ? "Search by tech or type" : "Buscar por nombre o tipo"}
+                            placeholder={t("list.placeholder")}
                         />
                         <div className="List__header--filters">
                             <div>
@@ -177,7 +177,7 @@ const List = () => {
                 }
 
 
-                <p className="List__footer">{eng ? "Listed technologies:" : "Tecnologías listadas:"} {listadoFiltrado.length}</p>
+                <p className="List__footer">{t("list.footer")} {listadoFiltrado.length}</p>
             </div>
 
         </>
